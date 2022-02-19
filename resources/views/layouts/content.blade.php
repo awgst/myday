@@ -14,6 +14,7 @@
     </div>
     <!-- Cards List -->
     <div id="hidden-drag-ghost-list" class="ui-sortable mt-3">
-       @include('component.card')                 
+       {{-- @include('component.card') --}}
+       <x-card  />
     </div>
 </div>
