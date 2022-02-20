@@ -44,6 +44,7 @@ function editOrDelete(param) {
         switch (param) {
             case 'item':
                 $(this).parents(`.${param}`).find(`.count`).attr('style', 'display: none;');
+                $(this).parents(`.${param}`).find(`#deleteItem`).attr('style', 'display: none;');
                 break;
             case 'task':
                 $(this).parents(`.${param}`).find(`.delete-${param}`).attr('style', 'display: none;');
@@ -59,6 +60,7 @@ function editOrDelete(param) {
         switch (param) {
             case 'item':
                 $(this).parents(`.${param}`).find(`.count`).fadeIn();
+                $(this).parents(`.${param}`).find(`#deleteItem`).fadeIn();
                 updateItem($(this));
                 break;
             case 'task':

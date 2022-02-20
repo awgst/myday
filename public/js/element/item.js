@@ -11,28 +11,39 @@ $(document).ready(function () {
     $('.form-item').on('blur', function () {
         $(this).prop('disabled', true);
     });
+
+    $(document).on('submit', '#formNewItem', function (e) {
+        e.preventDefault();
+        createItem($(this));
+    });
 });
 
 function createItem(param) {
     let items = $(param).parents('.form-new-item');
     let input = items.find('input');
-    let newItem = `<div class="item" style="display: none;">
-        <div class="form-search">
-            <input type="text" class="mb-0 form-item" style="line-height: 10px; border-bottom: none;" value="${input.val()}">
-        </div>
-        <p class="mb-0 count d-none">0</p>
-        <a id="editItem" class="save-item" title="Edit" style="display: none;">
-            <i class="fa fa-save text-success"></i>
-        </a>
-        <div class="deletion-item">
-            <a onclick="deleteItem(this)" id="deleteItem" title="Delete" style="cursor: pointer;">
-                <i class="fa fa-trash text-danger"></i>
-            </a>
-        </div>
-    </div>`;
-    $(newItem).insertBefore($('.new-item'));
-    $('.item').fadeIn();
-    input.val('');
+    let saveIcon = $('#saveNewItem').find('i');
+    saveIcon.removeClass('fa-check');
+    saveIcon.addClass('fa-spinner fa-pulse');
+    $('#saveNewItem').addClass('disabled');
+    $.ajax({
+        type: "POST",
+        url: storeItemRoute,
+        data: {name: input.val()},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            $(response).insertBefore($('.new-item'));
+            $('.item').fadeIn();
+            input.val('');
+            onCreating();
+        },
+        complete: function () {
+            saveIcon.addClass('fa-check');
+            saveIcon.removeClass('fa-spinner fa-pulse');
+            $('#saveNewItem').removeClass('disabled');
+        }
+    });
 }
 
 function updateItem(param) {
@@ -57,8 +68,7 @@ function cancelNewItem(e)
     $('a.new').fadeIn();
 
     // Cancel Creating
-    $('.deletion-item').addClass('d-none');
-    $('.count').removeClass('d-none');
+    cancelCreating();
 }
 
 // Open form to create new item
@@ -67,13 +77,13 @@ function createNewItem(e)
     $(e).attr('style', 'display:none;');
     $(e).parent().append(`
         <div class="form-new-item form-search" style="display:none;">
-            <form action="" class="d-flex justify-content-between align-items-center">
-                <input type="text" placeholder="New List" class="text-muted glass-input" style="line-height:1.75rem;" title="Press enter to create new item">
+            <form action="" class="d-flex justify-content-between align-items-center" id="formNewItem">
+                <input autofocus type="text" placeholder="New List" class="text-muted glass-input" style="line-height:1.75rem;" title="Press enter to create new item">
                 <div class="d-flex">
                     <a onclick="cancelNewItem(this)" id="cancelNewItem" class="btn btn-danger" style="padding: 0.1rem 0.15rem;line-height: 0;margin-left: 0.35rem;font-size: 12px;cursor:pointer;" title="Cancel">
                         <i class="fa fa-close" style="color: white;"></i>
                     </a>
-                    <a onclick="createItem(this)" class="btn btn-success" style="padding: 0.12rem 0.12rem;
+                    <a id="saveNewItem" onclick="createItem(this)" class="btn btn-success" style="padding: 0.12rem 0.12rem;
                         line-height: 0;
                         margin-left: 0.25rem;
                         font-size: 12px;
@@ -89,6 +99,17 @@ function createNewItem(e)
     $('.form-new-item').fadeIn();
 
     // On creating
+    onCreating();
+}
+
+function onCreating()
+{
     $('.count').addClass('d-none');
     $('.deletion-item').removeClass('d-none');
+}
+
+function cancelCreating()
+{
+    $('.deletion-item').addClass('d-none');
+    $('.count').removeClass('d-none');
 }

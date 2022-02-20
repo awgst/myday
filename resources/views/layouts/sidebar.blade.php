@@ -1,6 +1,6 @@
 <div class="sidebar-nav mt-3">
     {{-- Item --}}
-    <x-item isActive="true" name="Task 1" count="0" />
+    <x-item />
     {{-- New Item --}}
     <div class="item new-item" style="display: block;">
         <a onclick="createNewItem(this)" class="new light-blue" style="cursor: pointer;">

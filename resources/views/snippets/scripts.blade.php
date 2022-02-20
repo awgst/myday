@@ -12,3 +12,6 @@
 <script src="{{ asset('js/element/card.js') }}"></script>
 <script src="{{ asset('js/element/item.js') }}"></script>
 <script src="{{ asset('js/element/task.js') }}"></script>
+
+{{-- Defined Route --}}
+@include('snippets.routes')
