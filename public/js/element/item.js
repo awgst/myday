@@ -16,6 +16,8 @@ $(document).ready(function () {
         e.preventDefault();
         createItem($(this));
     });
+
+    loadItem();
 });
 
 function createItem(param) {
@@ -42,6 +44,16 @@ function createItem(param) {
             saveIcon.addClass('fa-check');
             saveIcon.removeClass('fa-spinner fa-pulse');
             $('#saveNewItem').removeClass('disabled');
+        }
+    });
+}
+
+function loadItem() {
+    $.ajax({
+        type: "GET",
+        url: listItemRoute,
+        success: function (response) {
+            $('.sidebar-nav').prepend(response);
         }
     });
 }

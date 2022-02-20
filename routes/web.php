@@ -19,5 +19,6 @@ Route::get('/', function () {
 });
 
 Route::group(['as'=>'item.', 'prefix'=>'item'], function(){
-    Route::post('store', [ItemController::class, 'store'])->name('store');
+    Route::get('', [ItemController::class, 'index'])->name('index');
+    Route::post('', [ItemController::class, 'store'])->name('store');
 });

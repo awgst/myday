@@ -1,6 +1,5 @@
 <div class="sidebar-nav mt-3">
-    {{-- Item --}}
-    <x-item />
+    {{-- Items --}}
     {{-- New Item --}}
     <div class="item new-item" style="display: block;">
         <a onclick="createNewItem(this)" class="new light-blue" style="cursor: pointer;">
