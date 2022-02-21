@@ -44,4 +44,15 @@ class ItemController extends Controller
 
         return response()->json(['item'=>$item], 200);
     }
+
+    public function destroy($id)
+    {
+        try {
+            $item = $this->item->destroy($id);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+
+        return response()->json(['item'=>$item], 200);
+    }
 }

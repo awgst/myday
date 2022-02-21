@@ -83,8 +83,23 @@ function updateItem(param) {
 }
 
 function deleteItem(param) {
-    console.log('deleted item');
-    $(param).parents('.item').remove();
+    let icon = $(param).find('i');
+    icon.removeClass('fa-trash');
+    icon.addClass('fa-spinner fa-pulse');
+    $.ajax({
+        type: "DELETE",
+        url: $(param).attr('data-url'),
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            $(param).parents('.item').remove();
+        }, 
+        complete: function () { 
+            icon.addClass('fa-trash');
+            icon.removeClass('fa-spinner fa-pulse');
+        }
+    });
 }
 
 // Close form to create new item

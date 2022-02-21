@@ -14,7 +14,7 @@
         <i class="fa fa-save text-success"></i>
     </a>
     <div class="deletion-item d-none">
-        <a onclick="deleteItem(this)" id="deleteItem" title="Delete" style="cursor: pointer;">
+        <a onclick="deleteItem(this)" data-url="{{ route('item.destroy', $id) }}" id="deleteItem" title="Delete" style="cursor: pointer;">
             <i class="fa fa-trash text-danger"></i>
         </a>
     </div>
