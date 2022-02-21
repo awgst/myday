@@ -1,15 +1,20 @@
 $(document).ready(function () {
     // Edit or delete item
     editOrDelete('item');
-    $('.form-item').prop('disabled', true);
-    $('.item').find('.form-search').on({
-        dblclick: function() {
-            $(this).find('.form-item').prop('disabled', false);
-            $(this).find('.form-item').focus();
-        }
+    // Load Item
+    loadItem();
+
+    // Double click to edit
+    $(document).on('dblclick', '.item .form-search', function () {
+        $(this).find('.form-item').prop('disabled', false);
+        $(this).find('.form-item').focus();
     });
-    $('.form-item').on('blur', function () {
+    $(document).on('blur', '.form-item', function () {
         $(this).prop('disabled', true);
+    });
+
+    $(document).on('click', '.item .form-search', function () {
+        console.log('1 click');
     });
 
     $(document).on('submit', '#formNewItem', function (e) {
@@ -17,7 +22,6 @@ $(document).ready(function () {
         createItem($(this));
     });
 
-    loadItem();
 });
 
 function createItem(param) {
@@ -53,6 +57,7 @@ function loadItem() {
         type: "GET",
         url: listItemRoute,
         success: function (response) {
+            $('.item-loading').remove();
             $('.sidebar-nav').prepend(response);
         }
     });

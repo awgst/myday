@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Item\StoreRequest;
 use App\Repositories\BaseRepository;
 use App\Repositories\ItemRepository;
+use Exception;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -24,6 +25,11 @@ class ItemController extends Controller
 
     public function store(StoreRequest $request)
     {
+        try {
+            $this->item->store(['test'=>'ok']);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
         return view('component.item', $request->data());
     }
 }
