@@ -64,8 +64,22 @@ function loadItem() {
 }
 
 function updateItem(param) {
-    console.log('saved item');
-    console.log(param.val());
+    var input = param;
+    $.ajax({
+        type: "PUT",
+        url: param.attr('data-url'),
+        data: {name: param.val()},
+        dataType: "json",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            input.val(response.item.name);
+        },
+        error: function () {
+            input.val('');
+        }
+    });
 }
 
 function deleteItem(param) {

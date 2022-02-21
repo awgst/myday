@@ -4,7 +4,7 @@ namespace App\Http\Requests\Item;
 
 use Illuminate\Http\Request;
 
-class StoreRequest
+class UpdateRequest
 {
     public function data()
     {

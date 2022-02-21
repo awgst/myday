@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Item\StoreRequest;
+use App\Http\Requests\Item\UpdateRequest;
 use App\Repositories\BaseRepository;
 use App\Repositories\ItemRepository;
 use Exception;
@@ -31,5 +32,16 @@ class ItemController extends Controller
             dd($e->getMessage());
         }
         return view('component.item', $request->data());
+    }
+
+    public function update(UpdateRequest $request, $id)
+    {
+        try {
+            $item = $this->item->update($id, $request->data());
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+
+        return response()->json(['item'=>$item], 200);
     }
 }

@@ -21,4 +21,5 @@ Route::get('/', function () {
 Route::group(['as'=>'item.', 'prefix'=>'item'], function(){
     Route::get('', [ItemController::class, 'index'])->name('index');
     Route::post('', [ItemController::class, 'store'])->name('store');
+    Route::put('/{id}', [ItemController::class, 'update'])->name('update');
 });
