@@ -14,16 +14,17 @@ $(document).ready(function () {
     // Dynamic width
     $(document).on('change', '.form-date-card', function () {
         const selectedDate = new Date($(this).val());
-        $('#dateText').html($(this).val());
-
+        $(this).parent().find('#dateText').html($(this).val());
+        
         if ($(this).val() == '') {
-            $('#dateText').html('Input Date');
+            console.log('testt'+$(this).val());
+            $(this).parent().find('#dateText').html('Input Date');
         }
         if (isToday(selectedDate)) {
-            $('#dateText').html('Today');
+            $(this).parent().find('#dateText').html('Today');
         }
         if (isYesterday(selectedDate)) {
-            $('#dateText').html('Yesterday');
+            $(this).parent().find('#dateText').html('Yesterday');
         }
 
         let width;
@@ -44,8 +45,6 @@ $(document).ready(function () {
         itemCount--;
         item.html(itemCount);
     });
-
-    $('.form-date-card').trigger('change');
 
     // Task completion and progress
     $('.card').each(function () { 

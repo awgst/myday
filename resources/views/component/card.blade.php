@@ -14,7 +14,6 @@
         <div class="progress gradient-blue"></div>
     </div>
     <div class="card-body px-0 pt-0 pb-2" style="display: none;">
-        <x-task checked="" />
         {{-- New Task --}}
         <div class="task d-flex align-items-center mt-2 new-task-container justify-content-between">
             <a href="" class="new-task">

@@ -43,6 +43,11 @@ function loadContent(param)
                 $('.form-item.active.extra-light-blue').removeClass('active extra-light-blue');
                 param.addClass('active extra-light-blue');
                 param.find('.form-item').addClass('active extra-light-blue');
+                $('.form-date-card').trigger('change');
+                $('.form-date-card').datepicker({
+                    format: 'dd M yyyy',
+                    autoclose: true
+                });
             }
         });
     } else {

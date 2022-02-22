@@ -14,8 +14,6 @@
     </div>
     <!-- Cards List -->
     <div id="hidden-drag-ghost-list" class="ui-sortable mt-3">
-        @foreach ($cards ?? [] as $card)
-            <x-card name="{{ $card->name }}" date="{{ $card->date }}" />
-        @endforeach
+        {!! $cards !!}
     </div>
 </div>

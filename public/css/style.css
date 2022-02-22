@@ -10,7 +10,7 @@
     --extra-light-blue: #02bad6;
     --gradient-blue : linear-gradient(to right top, #65dfc9, #6cdbeb);
     --light-blue: rgb(0, 185, 185);
-    --progress-after: 60%;
+    --progress-after: 0%;
 }
 
 a {
@@ -312,6 +312,7 @@ body {
 
 #hidden-drag-ghost-list {
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* Custom color class */

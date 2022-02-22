@@ -17,6 +17,6 @@ class Item extends Model
 
     public function cards()
     {
-        return $this->hasMany(Cards::class, 'item_id', 'id');
+        return $this->hasMany(Card::class, 'item_id', 'id');
     }
 }
