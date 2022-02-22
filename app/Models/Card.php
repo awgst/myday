@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Card extends Model
 {
     use HasFactory;
 
@@ -13,10 +13,10 @@ class Item extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    protected $table = 'items';
+    protected $table = 'cards';
 
-    public function cards()
+    public function item()
     {
-        return $this->hasMany(Cards::class, 'item_id', 'id');
+        return $this->belongsTo(Item::class, 'item_id');
     }
 }
