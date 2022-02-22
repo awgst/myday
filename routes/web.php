@@ -20,7 +20,8 @@ Route::get('/', function () {
 
 Route::group(['as'=>'item.', 'prefix'=>'item'], function(){
     Route::get('', [ItemController::class, 'index'])->name('index');
+    Route::get('{id}', [ItemController::class, 'show'])->name('show');
     Route::post('', [ItemController::class, 'store'])->name('store');
-    Route::put('/{id}', [ItemController::class, 'update'])->name('update');
-    Route::delete('/{id}', [ItemController::class, 'destroy'])->name('destroy');
+    Route::put('{id}', [ItemController::class, 'update'])->name('update');
+    Route::delete('{id}', [ItemController::class, 'destroy'])->name('destroy');
 });

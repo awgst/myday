@@ -24,10 +24,6 @@ $(document).ready(function () {
     });
 
     $(window).trigger('resize');
-
-    // $(document).bind('enterKey', 'input,textarea', function (e) {
-        
-    // });
     
     $(document).on('keyup', 'input,textarea', function (e) {
         e.preventDefault();
@@ -37,6 +33,7 @@ $(document).ready(function () {
             $(this).blur();
         }
     });
+
 });
 
 function editOrDelete(param) {
@@ -44,7 +41,7 @@ function editOrDelete(param) {
         switch (param) {
             case 'item':
                 $(this).parents(`.${param}`).find(`.count`).attr('style', 'display: none;');
-                $(this).parents(`.${param}`).find(`#deleteItem`).attr('style', 'display: none;');
+                $(this).parents(`.${param}`).find(`#deleteItem`).attr('style', '');
                 break;
             case 'task':
                 $(this).parents(`.${param}`).find(`.delete-${param}`).attr('style', 'display: none;');
@@ -56,14 +53,9 @@ function editOrDelete(param) {
     });
 
     $(document).on('blur', `.form-${param}`, function () {
-        $(this).parents(`.${param}`).find(`.save-${param}`).attr('style', 'display: none;');
         switch (param) {
-            case 'item':
-                $(this).parents(`.${param}`).find(`.count`).fadeIn();
-                $(this).parents(`.${param}`).find(`#deleteItem`).fadeIn();
-                updateItem($(this));
-                break;
             case 'task':
+                $(this).parents(`.${param}`).find(`.save-${param}`).attr('style', 'display: none;');
                 $(this).parents(`.${param}`).find(`.delete-${param}`).fadeIn();
                 updateTask();
                 break;
@@ -110,4 +102,16 @@ function updateProgressCompletion(param) {
     param.find('.total-complete-task').html(totalCompleteTask);
     param.find('.total-task').html(totalTask);
     param.find('.progress').attr('style', `--progress-after: ${progress}%;`);
+}
+
+function onLoading(selector, className)
+{
+    selector.removeClass(className);
+    selector.addClass('fa-spinner fa-pulse disabled');
+}
+
+function afterLoading(selector, className)
+{
+    selector.addClass(className);
+    selector.removeClass('fa-spinner fa-pulse disabled');
 }

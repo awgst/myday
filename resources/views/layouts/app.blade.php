@@ -32,9 +32,9 @@
                     </div>
                     <!-- End of Dashboard -->
                 </div>
-                <div class="col-lg-9 px-3 py-4">
+                <div class="col-lg-9 px-3 py-4" id="contentContainer" style="height: 100%; align-items: center; display: flex; justify-content: center;">
                     <!-- Content Section -->
-                    @include('layouts.content')
+                    <i class="fa fa-spinner fa-pulse text-muted" style="font-size: 30px;"></i>
                     <!-- End of Content Section -->
                 </div>
             </div>

@@ -8,7 +8,7 @@
         </div>
         <span class="text-muted">
             <div class="form-search">
-                <input type="text" class="form-date-card" placeholder="Input Date" style="z-index: 5;" value="{{ $date ?? '' }}"><span id="dateText">{{ $date ?? '' }}</span>, <span class="total-complete-task">{{ $totalCompletion ?? '' }}</span> of <span class="total-task">{{ $total ?? '' }}</span> completed
+                <input type="text" class="form-date-card" placeholder="Input Date" style="z-index: 5;" value="{{ $date ?? '' }}"><span id="dateText">{{ $date ?? '' }}</span>, <span class="total-complete-task">{{ $totalCompletion ?? 0 }}</span> of <span class="total-task">{{ $total ?? 0 }}</span> completed
             </div>
         </span>
         <div class="progress gradient-blue"></div>

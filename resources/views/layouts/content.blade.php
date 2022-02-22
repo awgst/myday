@@ -2,8 +2,8 @@
     <!-- Header -->
     <div class="header row mx-0">
         <div class="col-8 px-0">
-            <h2 class="mb-0" style="color: #444444;">My Day</h2>
-            <p class="text-muted">Suday, 13 February 2022</p>
+            <h2 class="mb-0" style="color: #444444;">{{ $item->name ?? '' }}</h2>
+            <p class="text-muted">{{ date("l, d F Y") }}</p>
         </div>
         <div class="col-4 px-0">
             <a href="" id="newCard" class="btn btn-primary new-card gradient-blue float-end btn-hover">
@@ -14,7 +14,8 @@
     </div>
     <!-- Cards List -->
     <div id="hidden-drag-ghost-list" class="ui-sortable mt-3">
-       {{-- @include('component.card') --}}
-       <x-card  />
+        @foreach ($cards ?? [] as $card)
+            <x-card name="{{ $card->name }}" date="{{ $card->date }}" />
+        @endforeach
     </div>
 </div>

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Open form to create a new card
-    $('#newCard').on('click', function (e) {
+    $(document).on('click', '#newCard', function (e) {
         e.preventDefault();
         createNewCard();
     });
@@ -39,6 +39,10 @@ $(document).ready(function () {
     $(document).on('click', '.delete-card', function (e) {
         e.preventDefault();
         $(this).parents('.card').remove();
+        let item = $('.item.active').find('.count');
+        let itemCount = parseInt(item.html());
+        itemCount--;
+        item.html(itemCount);
     });
 
     $('.form-date-card').trigger('change');

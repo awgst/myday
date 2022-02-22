@@ -20,18 +20,28 @@ class ItemController extends Controller
 
     public function index()
     {
-        $items = $this->item->fetch(null, 10);
+        $items = $this->item->fetch();
         return view('component.render.item', ['items' => $items]);
+    }
+
+    public function show($id)
+    {
+        $item = $this->item->findOrFail($id);
+        $cards = [];
+        return view('layouts.content', compact('item', 'cards'));
     }
 
     public function store(StoreRequest $request)
     {
         try {
-            $this->item->store(['test'=>'ok']);
+            $item = $this->item->store($request->data());
         } catch (Exception $e) {
             dd($e->getMessage());
         }
-        return view('component.item', $request->data());
+        return view('component.item', [
+            'id' => $item->id ?? 0,
+            'name' => $item->name ?? '',
+        ]);
     }
 
     public function update(UpdateRequest $request, $id)

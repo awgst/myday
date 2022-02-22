@@ -21,6 +21,8 @@ class BaseRepository implements BaseRepositoryInterface
             $model = $model->with($with);
         }
 
+        $model = $model->orderBy('id');
+
         if ($paginate) {
             return $model->paginate($paginate);
         } else {

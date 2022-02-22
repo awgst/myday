@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var page = 1;
     // Edit or delete item
     editOrDelete('item');
     // Load Item
@@ -6,15 +7,20 @@ $(document).ready(function () {
 
     // Double click to edit
     $(document).on('dblclick', '.item .form-search', function () {
-        $(this).find('.form-item').prop('disabled', false);
-        $(this).find('.form-item').focus();
-    });
-    $(document).on('blur', '.form-item', function () {
-        $(this).prop('disabled', true);
+        if ($('#formNewItem').length === 0) {
+            $(this).find('.form-item').prop('disabled', false);
+            $(this).find('.form-item').focus();
+        }
     });
 
-    $(document).on('click', '.item .form-search', function () {
-        console.log('1 click');
+    $(document).on('click', '#editItem', function () {
+        updateItem($(this).parent().find('.form-item'));
+    });
+
+    $(document).on('click', '.item', function () {
+        if (!($(this).hasClass('new-item') || $(this).hasClass('active'))) {
+            loadContent($(this));
+        }
     });
 
     $(document).on('submit', '#formNewItem', function (e) {
@@ -24,12 +30,31 @@ $(document).ready(function () {
 
 });
 
+function loadContent(param)
+{
+    if (param) {
+        $.ajax({
+            type: "GET",
+            url: param.attr('data-url'),
+            success: function (response) {
+                $('#contentContainer').removeAttr('style');
+                $('#contentContainer').html(response);
+                $('.item.active.extra-light-blue').removeClass('active extra-light-blue');
+                $('.form-item.active.extra-light-blue').removeClass('active extra-light-blue');
+                param.addClass('active extra-light-blue');
+                param.find('.form-item').addClass('active extra-light-blue');
+            }
+        });
+    } else {
+        $('#contentContainer').html('');
+    }
+}
+
 function createItem(param) {
     let items = $(param).parents('.form-new-item');
     let input = items.find('input');
     let saveIcon = $('#saveNewItem').find('i');
-    saveIcon.removeClass('fa-check');
-    saveIcon.addClass('fa-spinner fa-pulse');
+    onLoading(saveIcon, 'fa-check');
     $('#saveNewItem').addClass('disabled');
     $.ajax({
         type: "POST",
@@ -45,26 +70,28 @@ function createItem(param) {
             onCreating();
         },
         complete: function () {
-            saveIcon.addClass('fa-check');
-            saveIcon.removeClass('fa-spinner fa-pulse');
+            afterLoading(saveIcon, 'fa-check');
             $('#saveNewItem').removeClass('disabled');
         }
     });
 }
 
-function loadItem() {
+function loadItem(page) {
     $.ajax({
         type: "GET",
-        url: listItemRoute,
+        url: listItemRoute+'?page='+page,
         success: function (response) {
             $('.item-loading').remove();
             $('.sidebar-nav').prepend(response);
+            loadContent($('.item.active'));
         }
     });
 }
 
 function updateItem(param) {
-    var input = param;
+    let input = param;
+    let editItem = param.parents('.item').find('#editItem');
+    onLoading(editItem, 'fa-save');
     $.ajax({
         type: "PUT",
         url: param.attr('data-url'),
@@ -75,17 +102,25 @@ function updateItem(param) {
         },
         success: function (response) {
             input.val(response.item.name);
+            loadContent(param.parents('.item'));
         },
         error: function () {
             input.val('');
+        },
+        complete: function () { 
+            input.blur();
+            input.prop('disabled', true);
+            editItem.attr('style', 'display:none;');
+            param.parents('.item').find(`.count`).fadeIn();
+            param.parents('.item').find(`#deleteItem`).fadeIn();
+            afterLoading(editItem, 'fa-save');
         }
     });
 }
 
 function deleteItem(param) {
     let icon = $(param).find('i');
-    icon.removeClass('fa-trash');
-    icon.addClass('fa-spinner fa-pulse');
+    onLoading(icon, 'fa-trash');
     $.ajax({
         type: "DELETE",
         url: $(param).attr('data-url'),
@@ -94,10 +129,10 @@ function deleteItem(param) {
         },
         success: function (response) {
             $(param).parents('.item').remove();
+            loadContent(null);
         }, 
         complete: function () { 
-            icon.addClass('fa-trash');
-            icon.removeClass('fa-spinner fa-pulse');
+            afterLoading(icon, 'fa-trash');
         }
     });
 }
