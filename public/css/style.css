@@ -299,8 +299,10 @@ body {
     opacity: 1;
 }
 #hidden-drag-ghost-list .sortable-drag .progress::after {
-    opacity: 1;
-    width: 40%;
+    display: none;
+}
+#hidden-drag-ghost-list .sortable-drag .progress {
+    background: rgb(236, 236, 236)!important;
 }
 #hidden-drag-ghost-list .sortable-ghost {
     opacity: 0;

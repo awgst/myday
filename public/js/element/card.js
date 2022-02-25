@@ -41,11 +41,7 @@ $(document).ready(function () {
     // Delete card
     $(document).on('click', '.delete-card', function (e) {
         e.preventDefault();
-        $(this).parents('.card').remove();
-        let item = $('.item.active').find('.count');
-        let itemCount = parseInt(item.html());
-        itemCount--;
-        item.html(itemCount);
+        deleteCard($(this));
     });
 
     // Update Card
@@ -132,4 +128,28 @@ function updateCard(param)
             }
         }
     });
+}
+
+function deleteCard(param)
+{
+    let icon = $(param).find('i');
+    onLoading(icon, 'fa-trash');
+    $.ajax({
+        type: "DELETE",
+        url: param.attr('href'),
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            param.parents('.card').remove();
+            let item = $('.item.active').find('.count');
+            let itemCount = parseInt(item.html());
+            itemCount--;
+            item.html(itemCount);
+        }, 
+        complete: function () { 
+            afterLoading(icon, 'fa-trash');
+        }
+    });
+    
 }

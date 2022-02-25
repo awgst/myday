@@ -53,6 +53,14 @@ function loadContent(param)
                     // New task button not counted
                     updateProgressCompletion($(this));
                 });
+
+                $(window).trigger('resize');
+
+                // Sortable
+                $(function() {
+                    $("#hidden-drag-ghost-list").sortable();
+                    $(".items").sortable();
+                });
             }
         });
     } else {
@@ -92,7 +100,7 @@ function loadItem(page) {
         url: listItemRoute+'?page='+page,
         success: function (response) {
             $('.item-loading').remove();
-            $('.sidebar-nav').prepend(response);
+            $('.items').prepend(response);
             loadContent($('.item.active'));
         }
     });

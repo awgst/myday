@@ -11,16 +11,12 @@ $(document).ready(function () {
         $(this).val(searchValue);
     });
 
-    // Sortable
-    $(function() {
-        $("#hidden-drag-ghost-list").sortable();
-    });
-
     // Resize sidebar and cardlist height
     $(window).on('resize', function(){
         let height = getSidebarNavHeight();
+        let cardContainerHeight = getCardsListHeight();
         $('.sidebar-nav').attr('style', "height: "+height);
-        $('#hidden-drag-ghost-list').attr('style', "height: "+getCardsListHeight());
+        $('#hidden-drag-ghost-list').attr('style', "height: "+cardContainerHeight);
     });
 
     $(window).trigger('resize');

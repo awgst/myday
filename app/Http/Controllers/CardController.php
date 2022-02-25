@@ -40,4 +40,15 @@ class CardController extends Controller
 
         return response()->json(['card'=>$card], 200);
     }
+
+    public function destroy($id)
+    {
+        try {
+            $card = $this->card->destroy($id);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+
+        return response()->json(['card'=>$card], 200);
+    }
 }

@@ -20,7 +20,7 @@
                 <i class="fa fa-plus text-muted"></i>
                 <span class="ms-1" style="font-weight: bold; font-size: 16px;">New Task</span>
             </a>
-            <a href="" class="delete-card btn btn-danger" title="Delete Card">
+            <a href="{{ route('card.destroy', $id) }}" class="delete-card btn btn-danger" title="Delete Card">
                 <i class="fa fa-trash"></i>
             </a>
         </div>
