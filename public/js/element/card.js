@@ -12,12 +12,11 @@ $(document).ready(function () {
     });
 
     // Dynamic width
-    $(document).on('change', '.form-date-card', function () {
+    $(document).on('change', '.form-date-card', function (event, firstLoad=false) {
         const selectedDate = new Date($(this).val());
         $(this).parent().find('#dateText').html($(this).val());
-        
+
         if ($(this).val() == '') {
-            console.log('testt'+$(this).val());
             $(this).parent().find('#dateText').html('Input Date');
         }
         if (isToday(selectedDate)) {
@@ -34,6 +33,9 @@ $(document).ready(function () {
             width = (($(this).attr('placeholder').length + 1) * 8) + 'px';
         }
         $(this).attr('style', 'width:'+width);
+        if (firstLoad === false) {
+            updateCard($(this));
+        }
     });
 
     // Delete card
@@ -46,11 +48,11 @@ $(document).ready(function () {
         item.html(itemCount);
     });
 
-    // Task completion and progress
-    $('.card').each(function () { 
-        // New task button not counted
-        updateProgressCompletion($(this));
+    // Update Card
+    $(document).on('blur', '.form-card', function () {
+        updateCard($(this));
     });
+
 });
 // Check selectedDate isToday
 const isToday = (date) => {
@@ -75,44 +77,59 @@ function cancelCreateCard()
 // Open form to create new card
 function createNewCard()
 {
-    $('#hidden-drag-ghost-list').prepend(`
-    <div class="card ui-state-default ui-sortable-handle">
-        <div class="card-title">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="form-search">
-                    <input type="text" class="mb-0 form-card" value="New Card" placeholder="Card Name">
-                </div>
-                <i class="fa fa-angle-down expand-task" id="" data-value="expand"></i>
-            </div>
-            <span class="text-muted">
-                <div class="form-search">
-                    <input type="text" class="form-date-card" placeholder="Input Date" style="z-index: 5;"><span id="dateText"></span>, <span class="total-complete-task">0</span> of <span class="total-task">0</span> completed
-                </div>
-            </span>
-            <div class="progress gradient-blue" style="--progress-after: 0%;"></div>
-        </div>
-        <div class="card-body px-0 pt-0 pb-2" style="display: none;">
-            <div class="task d-flex align-items-center mt-2 new-task-container justify-content-between">
-                <a href="" class="new-task">
-                    <i class="fa fa-plus text-muted"></i>
-                    <span class="ms-1" style="font-weight: bold; font-size: 16px;">New Task</span>
-                </a>
-                <a href="" class="delete-card btn btn-danger" title="Delete Card">
-                    <i class="fa fa-trash"></i>
-                </a>
-            </div>
-        </div>
-    </div>  
-    `);
-    // Datepicker
-    $('.form-date-card').datepicker({
-        format: 'dd M yyyy',
-        autoclose: true
+    let beforeLoading = $('#newCard').html();
+    let beforeLoadingWidth = $('#newCard').width();
+    let onLoading = `<i class="fa fa-pulse fa-spinner"></i>`;
+    // OnLoading
+    $('#newCard').addClass('disabled');
+    $('#newCard').attr('style', 'width:'+beforeLoadingWidth+'px');
+    $('#newCard').html(onLoading);
+    $.ajax({
+        type: "POST",
+        url: storeCardRoute,
+        data: {item_id:$('#newCard').attr('data-id')},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            $('#hidden-drag-ghost-list').prepend(response);
+            // Datepicker
+            $('.form-date-card').datepicker({
+                format: 'dd M yyyy',
+                autoclose: true
+            });
+            $('.form-date-card').trigger('change', true);
+            $('.new').slideDown();
+            let item = $('.item.active').find('.count');
+            let itemCount = parseInt(item.html());
+            itemCount++;
+            item.html(itemCount);
+        },
+        complete: function () {
+            // After loading
+            $('#newCard').removeClass('disabled');
+            $('#newCard').attr('style', '');
+            $('#newCard').html(beforeLoading);
+        }
     });
-    $('.form-date-card').trigger('change');
-    $('.new').slideDown();
-    let item = $('.item.active').find('.count');
-    let itemCount = parseInt(item.html());
-    itemCount++;
-    item.html(itemCount);
+    
+}
+
+function updateCard(param)
+{
+    $.ajax({
+        type: "PUT",
+        url: param.attr('data-url'),
+        data: param.serialize(),
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            if (param.hasClass('form-date-card')) {
+                param.val(response.card.date);    
+            } else {
+                param.val(response.card.name);
+            }
+        }
+    });
 }

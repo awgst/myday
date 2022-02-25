@@ -6,7 +6,7 @@
             <p class="text-muted">{{ date("l, d F Y") }}</p>
         </div>
         <div class="col-4 px-0">
-            <a href="" id="newCard" class="btn btn-primary new-card gradient-blue float-end btn-hover">
+            <a href="" data-id="{{ $item->id ?? '' }}" id="newCard" class="btn btn-primary new-card gradient-blue float-end btn-hover">
                 <i class="fa fa-plus"></i>
                 <span>New Card</span>
             </a>

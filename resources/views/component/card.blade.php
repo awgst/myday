@@ -2,13 +2,13 @@
     <div class="card-title">
         <div class="d-flex justify-content-between align-items-center">
             <div class="form-search">
-                <input type="text" class="mb-0 form-card" value="{{ $name ?? '' }}" placeholder="Card Name">
+                <input data-url="{{ route('card.update', $id) }}" name="name" type="text" class="mb-0 form-card" value="{{ $name ?? '' }}" placeholder="Card Name">
             </div>
             <i class="fa fa-angle-down expand-task" id="" data-value="expand"></i>
         </div>
         <span class="text-muted">
             <div class="form-search">
-                <input type="text" class="form-date-card" placeholder="Input Date" style="z-index: 5;" value="{{ $date ?? '' }}"><span id="dateText">{{ $date ?? '' }}</span>, <span class="total-complete-task">{{ $totalCompletion ?? 0 }}</span> of <span class="total-task">{{ $total ?? 0 }}</span> completed
+                <input type="text" data-url="{{ route('card.update', $id) }}" name="date" class="form-date-card date-card" placeholder="Input Date" style="z-index: 5;" value="{{ $date ?? '' }}"><span id="dateText">{{ $date ?? '' }}</span>, <span class="total-complete-task">{{ $totalCompletion ?? 0 }}</span> of <span class="total-task">{{ $total ?? 0 }}</span> completed
             </div>
         </span>
         <div class="progress gradient-blue"></div>

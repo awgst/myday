@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,10 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['as'=>'item.', 'prefix'=>'item'], function(){
-    Route::get('', [ItemController::class, 'index'])->name('index');
-    Route::get('{id}', [ItemController::class, 'show'])->name('show');
-    Route::post('', [ItemController::class, 'store'])->name('store');
-    Route::put('{id}', [ItemController::class, 'update'])->name('update');
-    Route::delete('{id}', [ItemController::class, 'destroy'])->name('destroy');
-});
+Route::resource('item', ItemController::class)
+    ->except('create', 'edit')
+    ->parameters([
+        'item' => 'id'
+    ]);
+
+Route::resource('card', CardController::class)
+    ->except('create', 'edit')
+    ->parameters([
+        'card' => 'id'
+    ]);

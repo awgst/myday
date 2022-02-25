@@ -26,7 +26,9 @@ class ItemController extends Controller
 
     public function show($id)
     {
-        $item = $this->item->findOrFail($id, ['cards']);
+        $item = $this->item->findOrFail($id, ['cards'=>function($query){
+            return $query->orderBy('id', 'desc');
+        }]);
         $cards = view('component.render.cards', ['cards'=>$item->cards])->render();
         return view('layouts.content', compact('item', 'cards'));
     }
