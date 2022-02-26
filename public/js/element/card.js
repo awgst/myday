@@ -101,6 +101,9 @@ function createNewCard()
             itemCount++;
             item.html(itemCount);
         },
+        error : function (response) {
+            toastr["error"](response.responseJSON.message, "ERROR")
+        },
         complete: function () {
             // After loading
             $('#newCard').removeClass('disabled');
@@ -126,6 +129,9 @@ function updateCard(param)
             } else {
                 param.val(response.card.name);
             }
+        },
+        error : function (response) {
+            toastr["error"](response.responseJSON.message, "ERROR")
         }
     });
 }
@@ -146,6 +152,9 @@ function deleteCard(param)
             let itemCount = parseInt(item.html());
             itemCount--;
             item.html(itemCount);
+        },
+        error : function (response) {
+            toastr["error"](response.responseJSON.message, "ERROR")
         }, 
         complete: function () { 
             afterLoading(icon, 'fa-trash');

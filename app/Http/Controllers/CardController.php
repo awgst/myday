@@ -24,7 +24,7 @@ class CardController extends Controller
         try {
             $card = $this->card->store(['item_id'=>$request->item_id]);
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return panic($e->getMessage());
         }
         
         return view('component.card', ['id'=>$card->id]);
@@ -35,7 +35,7 @@ class CardController extends Controller
         try {
             $card = $this->card->update($id, $request->data());
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return panic($e->getMessage());
         }
 
         return response()->json(['card'=>$card], 200);
@@ -46,7 +46,7 @@ class CardController extends Controller
         try {
             $card = $this->card->destroy($id);
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return panic($e->getMessage());
         }
 
         return response()->json(['card'=>$card], 200);
