@@ -61,6 +61,9 @@ function loadContent(param)
                     $("#hidden-drag-ghost-list").sortable();
                     $(".items").sortable();
                 });
+            }, 
+            error : function (response) {
+                toastr["error"](response.responseJSON.message, "ERROR")
             }
         });
     } else {
@@ -82,10 +85,14 @@ function createItem(param) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
+            console.log(response);
             $(response).insertBefore($('.new-item'));
             $('.item').fadeIn();
             input.val('');
             onCreating();
+        }, 
+        error : function (response) {
+            toastr["error"](response.responseJSON.message, "ERROR")
         },
         complete: function () {
             afterLoading(saveIcon, 'fa-check');
@@ -102,6 +109,9 @@ function loadItem(page) {
             $('.item-loading').remove();
             $('.items').prepend(response);
             loadContent($('.item.active'));
+        }, 
+        error : function (response) {
+            toastr["error"](response.responseJSON.message, "ERROR")
         }
     });
 }
@@ -122,8 +132,9 @@ function updateItem(param) {
             input.val(response.item.name);
             loadContent(param.parents('.item'));
         },
-        error: function () {
+        error: function (response) {
             input.val('');
+            toastr["error"](response.responseJSON.message, "ERROR")
         },
         complete: function () { 
             input.blur();
@@ -148,6 +159,9 @@ function deleteItem(param) {
         success: function (response) {
             $(param).parents('.item').remove();
             loadContent(null);
+        }, 
+        error : function (response) {
+            toastr["error"](response.responseJSON.message, "ERROR")
         }, 
         complete: function () { 
             afterLoading(icon, 'fa-trash');

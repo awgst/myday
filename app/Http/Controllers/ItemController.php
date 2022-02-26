@@ -20,7 +20,11 @@ class ItemController extends Controller
 
     public function index()
     {
-        $items = $this->item->fetch();
+        try {
+            $items = $this->item->fetch();
+        } catch (Exception $e) {
+            return panic($e->getMessage());
+        }
         return view('component.render.item', ['items' => $items]);
     }
 
@@ -38,7 +42,7 @@ class ItemController extends Controller
         try {
             $item = $this->item->store($request->data());
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return panic($e->getMessage());
         }
         return view('component.item', [
             'id' => $item->id ?? 0,
