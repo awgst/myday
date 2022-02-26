@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Card extends Model
+class Task extends Model
 {
     use HasFactory;
 
@@ -13,15 +13,10 @@ class Card extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    protected $table = 'cards';
+    protected $table = 'tasks';
 
-    public function item()
+    public function card()
     {
-        return $this->belongsTo(Item::class, 'item_id');
-    }
-
-    public function tasks()
-    {
-        return $this->hasMany(Task::class, 'card_id', 'id');
+        return $this->belongsTo(Card::class, 'card_id');
     }
 }
