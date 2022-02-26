@@ -1,7 +1,7 @@
 <div class="task d-flex align-items-center mt-2 justify-content-between">
     <div class="d-flex align-items-center">
         <div class="pretty p-icon p-round p-rotate mr-0">
-            <input type="checkbox" class="checklist" {{ $checked ?? '' }} />
+            <input type="checkbox" class="checklist" {{ $checked ? 'checked' : '' }} />
             <div class="state p-primary">
                 <i class="icon fa fa-check"></i>
                 <label>&nbsp;</label>

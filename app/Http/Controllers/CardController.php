@@ -27,7 +27,7 @@ class CardController extends Controller
             return panic($e->getMessage());
         }
         
-        return view('component.card', ['id'=>$card->id]);
+        return view('component.card', ['id'=>$card->id, 'tasks'=>null]);
     }
 
     public function update(UpdateRequest $request, $id)

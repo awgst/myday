@@ -14,6 +14,11 @@
         <div class="progress gradient-blue"></div>
     </div>
     <div class="card-body px-0 pt-0 pb-2" style="display: none;">
+        @if ($tasks)
+            @foreach ($tasks as $task)
+                <x-task :checked="$task->checked" :name="$task->name" :description="$task->description" />
+            @endforeach
+        @endif
         {{-- New Task --}}
         <div class="task d-flex align-items-center mt-2 new-task-container justify-content-between">
             <a href="" class="new-task">

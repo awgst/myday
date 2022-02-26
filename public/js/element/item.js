@@ -32,6 +32,7 @@ $(document).ready(function () {
 
 function loadContent(param)
 {
+    // If param is not null
     if (param) {
         $.ajax({
             type: "GET",
