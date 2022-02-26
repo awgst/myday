@@ -36,4 +36,15 @@ class TaskController extends Controller
 
         return response()->json(['task'=>$task], 200);
     }
+
+    public function destroy($id)
+    {
+        try {
+            $task = $this->task->destroy($id);
+        } catch (Exception $e) {
+            return panic($e->getMessage());
+        }
+
+        return response()->json(['task'=>$task], 200);
+    }
 }

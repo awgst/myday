@@ -76,7 +76,25 @@ function updateTask(param) {
 }
 
 function deleteTask(param) {
-    const parent = $(param).parents('.card');
-    $(param).parents('.task').remove();
-    updateProgressCompletion(parent);
+    let icon = $(param).find('i');
+    onLoading(icon, 'fa-close');
+    $.ajax({
+        type: "DELETE",
+        url: $(param).attr('href'),
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            const parent = $(param).parents('.card');
+            $(param).parents('.task').remove();
+            updateProgressCompletion(parent);
+        },
+        error : function (response) {
+            toastr["error"](response.responseJSON.message, "ERROR")
+        }, 
+        complete: function () { 
+            afterLoading(icon, 'fa-close');
+        }
+    });
+    
 }
