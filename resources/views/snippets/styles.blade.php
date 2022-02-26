@@ -8,3 +8,5 @@
 <link rel="stylesheet" href="{{ asset('css/pretty-checkbox.min.css') }}">
 {{-- Datepicker --}}
 <link rel="stylesheet" href="{{ asset('plugins/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
+{{-- Toastr --}}
+<link rel="stylesheet" href="{{ asset('plugins/toastr/build/toastr.min.css') }}">
