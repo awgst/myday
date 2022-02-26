@@ -102,7 +102,6 @@ function createNewCard()
             item.html(itemCount);
         },
         error : function (response) {
-            console.log(response.responseJSON);
             toastr["error"](response.responseJSON.message, "ERROR")
         },
         complete: function () {

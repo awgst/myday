@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,10 @@ Route::resource('card', CardController::class)
     ->except('create', 'edit')
     ->parameters([
         'card' => 'id'
+    ]);
+
+Route::resource('task', TaskController::class)
+    ->except('create', 'edit')
+    ->parameters([
+        'task' => 'id'
     ]);

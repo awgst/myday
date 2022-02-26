@@ -16,12 +16,12 @@
     <div class="card-body px-0 pt-0 pb-2" style="display: none;">
         @if ($tasks)
             @foreach ($tasks as $task)
-                <x-task :checked="$task->checked" :name="$task->name" :description="$task->description" />
+                <x-task :checked="$task->checked" :name="$task->name" :description="$task->description" id="{{ $task->id }}" />
             @endforeach
         @endif
         {{-- New Task --}}
         <div class="task d-flex align-items-center mt-2 new-task-container justify-content-between">
-            <a href="" class="new-task">
+            <a href="" class="new-task" data-id="{{ $id }}">
                 <i class="fa fa-plus text-muted"></i>
                 <span class="ms-1" style="font-weight: bold; font-size: 16px;">New Task</span>
             </a>
