@@ -1,15 +1,15 @@
 <div class="task d-flex align-items-center mt-2 justify-content-between">
     <div class="d-flex align-items-center">
         <div class="pretty p-icon p-round p-rotate mr-0">
-            <input type="checkbox" class="checklist" {{ ($checked ?? false) ? 'checked' : '' }} />
+            <input type="checkbox" name="checked" class="checklist" {{ ($checked ?? false) ? 'checked' : '' }} />
             <div class="state p-primary">
                 <i class="icon fa fa-check"></i>
                 <label>&nbsp;</label>
             </div>
         </div>
         <div class="form-search">
-            <input type="text" class="mb-0 form-task" style="line-height: 10px; border-bottom: none;" value="{{ $name ?? 'New Task' }}">
-            <textarea type="text" class="text-muted form-search form-task" style="font-size: 12px;">{{ $description ?? 'Task description' }}</textarea>
+            <input type="text" name="name" class="mb-0 form-task" style="line-height: 10px; border-bottom: none;" placeholder="New Task" value="{{ $name ?? '' }}">
+            <textarea type="text" name="description" class="text-muted form-search form-task" style="font-size: 12px;" placeholder="Task description">{{ $description ?? '' }}</textarea>
         </div>
     </div>
     <div class="">

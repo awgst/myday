@@ -26,6 +26,7 @@ $(document).ready(function () {
 
     // Check a task
     $(document).on('change', '.checklist', function () {
+        updateTask($(this));
         updateProgressCompletion($(this).parents('.card'));
     });
 });
@@ -40,7 +41,6 @@ function createNewTask(param) {
         },
         success: function (response) {
             const newTask = response;
-            console.log(newTask);
             $(newTask).insertBefore($('.new-task').parent());
             updateProgressCompletion(param.parents('.card'));  
         },
@@ -51,6 +51,28 @@ function createNewTask(param) {
 }
 
 function updateTask(param) {
+    let data = param.serialize();
+    let icon = param.parents('.task').find('.save-task').find('i');
+    if (!data && param.attr('type', 'checkbox')) {
+        data = {checked: false};
+    }
+    onLoading(icon, 'fa-save');
+    $.ajax({
+        type: "PUT",
+        url: param.parents('.task').find('.save-task').attr('href'),
+        data: data,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+        },
+        error : function (response) {
+            toastr["error"](response.responseJSON.message, "ERROR")
+        }, 
+        complete: function () { 
+            afterLoading(icon, 'fa-save');
+        }
+    });
 }
 
 function deleteTask(param) {

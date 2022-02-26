@@ -53,7 +53,7 @@ function editOrDelete(param) {
             case 'task':
                 $(this).parents(`.${param}`).find(`.save-${param}`).attr('style', 'display: none;');
                 $(this).parents(`.${param}`).find(`.delete-${param}`).fadeIn();
-                updateTask();
+                updateTask($(this));
                 break;
             default:
                 break;
