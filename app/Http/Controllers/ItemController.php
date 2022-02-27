@@ -21,7 +21,15 @@ class ItemController extends Controller
     public function index()
     {
         try {
-            $items = $this->item->fetch();
+            // $items = $this->item->fetch();
+            $itemModel = $this->item->model();
+            $items = $itemModel->with([
+                                    'cards'=>function($query){
+                                        return $query->latest();
+                                    },
+                                    'cards.tasks'
+                                ])->withCount('cards as cards_count')
+                                ->get();
         } catch (Exception $e) {
             return panic($e->getMessage());
         }
