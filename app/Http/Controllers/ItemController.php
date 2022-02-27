@@ -21,7 +21,6 @@ class ItemController extends Controller
     public function index()
     {
         try {
-            // $items = $this->item->fetch();
             $itemModel = $this->item->model();
             $items = $itemModel->with([
                                     'cards'=>function($query){
@@ -29,6 +28,7 @@ class ItemController extends Controller
                                     },
                                     'cards.tasks'
                                 ])->withCount('cards as cards_count')
+                                ->orderBy('id')
                                 ->get();
         } catch (Exception $e) {
             return panic($e->getMessage());
