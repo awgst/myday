@@ -20,7 +20,7 @@
                         <div class="head">
                             <div class="profile form-search">
                                 <img src="{{ asset('assets/images/avatar.jpeg') }}" alt="" class="pict">
-                                <input type="text" class="mx-1 text-muted" placeholder="Search" value="Hi, Name" id="search">
+                                <input type="text" class="mx-1 text-muted" placeholder="Search" value="Hi, Name" id="search" readonly>
                             </div>
                             <div class="search ms-1">
                                 <i class="fa fa-search text-muted"></i>
@@ -40,6 +40,7 @@
             </div>
         </div>
     </div>
+    @include('includes.modal-search')
     @include('snippets.scripts')
 </body>
 </html>

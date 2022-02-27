@@ -317,6 +317,56 @@ body {
     overflow-x: hidden;
 }
 
+/* Modal */
+.close:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+    z-index: 5;
+    top: 2rem;
+    right: 2rem;
+    position: absolute;
+    color: #ffffff;
+}
+
+.close {
+    padding-bottom: 0px!important;
+    padding: 1rem;
+    margin: -1rem -1rem -1rem auto;
+}
+
+button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+#search:focus-visible {
+    border: none!important;
+}
+
+.search {
+    cursor: pointer;
+}
+
+/* Autocomplete */
+.ui-autocomplete {
+    overflow: hidden auto!important;
+    background-color: transparent!important;
+    color: #c5c5c5!important;
+    border: none!important;
+    height: 45vh;
+}
+
 /* Custom color class */
 .extra-light-blue {
     color: var(--extra-light-blue)!important;

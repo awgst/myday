@@ -2,14 +2,6 @@ var newItem;
 $(document).ready(function () {
     // Search
     let searchValue = $('#search').val();
-    
-    $('#search').on('focus', function () {
-        $(this).val('');
-    });
-
-    $('#search').on('blur', function () {
-        $(this).val(searchValue);
-    });
 
     // Resize sidebar and cardlist height
     $(window).on('resize', function(){
@@ -33,6 +25,19 @@ $(document).ready(function () {
     $(document).on('click', 'a', function (e) {
         e.preventDefault();
     });
+
+    $('#search, .search').on('click', function (e) {
+        $('#modalSearch').modal('show');
+    });
+
+    $('button.close').on('click', function () {
+        $('#modalSearch').modal('hide');
+    });
+
+      $( "#formSearch" ).autocomplete({
+        source: [],
+        appendTo: '.modal-body'
+      });
 
 });
 
