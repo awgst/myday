@@ -10,3 +10,5 @@
 <link rel="stylesheet" href="{{ asset('plugins/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
 {{-- Toastr --}}
 <link rel="stylesheet" href="{{ asset('plugins/toastr/build/toastr.min.css') }}">
+{{-- jQuery UI --}}
+<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">

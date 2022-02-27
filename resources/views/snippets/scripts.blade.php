@@ -5,6 +5,7 @@
 {{-- jQuery --}}
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/jquery-sortable.js') }}"></script>
+<script src="{{ asset('js/jquery-ui.js') }}"></script>
 {{-- Datepicker --}}
 <script src="{{ asset('plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
 {{-- Toastr --}}
