@@ -259,8 +259,6 @@ body {
 /* Task */
 .expand-task {
     cursor: pointer;
-    width: 30px;
-    height: 30px;
 }
 
 .new-task {
@@ -411,7 +409,7 @@ button.close {
 
 @media screen and (max-width: 992px) {
     .glass {
-        width: 99vw;
+        width: unset;
         height: 99vh;
     }
     .glasses {

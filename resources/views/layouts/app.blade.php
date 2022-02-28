@@ -32,7 +32,7 @@
                     </div>
                     <!-- End of Dashboard -->
                 </div>
-                <div class="col-lg-9 px-3 py-4" id="contentContainer" style="height: 100%; align-items: center; display: flex; justify-content: center;">
+                <div class="col-lg-9 px-3 py-4" id="contentContainer" style="height: 100%; align-items: center; display: flex; justify-content: center; width: 100%;">
                     <!-- Content Section -->
                     <i class="fa fa-spinner fa-pulse text-muted" style="font-size: 30px;"></i>
                     <!-- End of Content Section -->
