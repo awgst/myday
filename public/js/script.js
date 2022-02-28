@@ -28,16 +28,22 @@ $(document).ready(function () {
 
     $('#search, .search').on('click', function (e) {
         $('#modalSearch').modal('show');
+        $('#formSearch').focus();
     });
 
     $('button.close').on('click', function () {
         $('#modalSearch').modal('hide');
     });
 
-      $( "#formSearch" ).autocomplete({
-        source: [],
-        appendTo: '.modal-body'
-      });
+    $( "#formSearch" ).catcomplete({
+        source: searchRoute,
+        appendTo: '.modal-body',
+        select: function(event, ui) {
+            $(`.item[data-id="${ui.item.id}"]`).trigger('click').after(function () {
+                $('#modalSearch').modal('hide');
+            });
+        }
+    });
 
 });
 

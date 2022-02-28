@@ -19,4 +19,9 @@ class Item extends Model
     {
         return $this->hasMany(Card::class, 'item_id', 'id');
     }
+
+    public function tasks()
+    {
+        return $this->hasManyThrough(Task::class, Card::class, 'item_id', 'card_id');
+    }
 }

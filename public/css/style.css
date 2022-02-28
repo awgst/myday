@@ -259,6 +259,8 @@ body {
 /* Task */
 .expand-task {
     cursor: pointer;
+    width: 30px;
+    height: 30px;
 }
 
 .new-task {
@@ -365,6 +367,14 @@ button.close {
     color: #c5c5c5!important;
     border: none!important;
     height: 45vh;
+    padding-top: 1rem!important;
+}
+
+.ui-state-active {
+    background-color: transparent!important;
+    /* border: none!important; */
+    border-color: transparent!important;
+    color: white!important;
 }
 
 /* Custom color class */
@@ -401,7 +411,7 @@ button.close {
 
 @media screen and (max-width: 992px) {
     .glass {
-        width: unset;
+        width: 99vw;
         height: 99vh;
     }
     .glasses {

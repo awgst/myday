@@ -1,4 +1,4 @@
-<div class="item {{ ($isActive ?? false) ? 'active extra-light-blue' : '' }}" data-url="{{ route('item.show', $id) }}">
+<div class="item {{ ($isActive ?? false) ? 'active extra-light-blue' : '' }}" data-url="{{ route('item.show', $id) }}" data-id="{{ $id }}">
     <div class="form-search">
         <input type="text" 
             name="name" 

@@ -34,16 +34,18 @@ function loadContent(param)
 {
     // If param is not null
     if (param) {
+        $('#contentContainer').attr('style', 'height: 100%; align-items: center; display: flex; justify-content: center;');
+        $('#contentContainer').html('<i class="fa fa-spinner fa-pulse text-muted" style="font-size: 30px;"></i>');
+        $('.item.active.extra-light-blue').removeClass('active extra-light-blue');
+        $('.form-item.active.extra-light-blue').removeClass('active extra-light-blue');
+        param.addClass('active extra-light-blue');
+        param.find('.form-item').addClass('active extra-light-blue');
         $.ajax({
             type: "GET",
             url: param.attr('data-url'),
             success: function (response) {
                 $('#contentContainer').removeAttr('style');
                 $('#contentContainer').html(response);
-                $('.item.active.extra-light-blue').removeClass('active extra-light-blue');
-                $('.form-item.active.extra-light-blue').removeClass('active extra-light-blue');
-                param.addClass('active extra-light-blue');
-                param.find('.form-item').addClass('active extra-light-blue');
                 $('.form-date-card').trigger('change', true);
                 $('.form-date-card').datepicker({
                     format: 'dd M yyyy',
@@ -86,7 +88,6 @@ function createItem(param) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-            console.log(response);
             $(response).insertBefore($('.new-item'));
             $('.item').fadeIn();
             input.val('');
