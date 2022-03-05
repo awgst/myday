@@ -18,6 +18,7 @@ class CreateCardsTable extends Migration
             $table->integer('item_id')->nullable();
             $table->string('name')->nullable();
             $table->date('date')->nullable();
+            $table->integer('position')->nullable();
             $table->timestamps();
         });
     }

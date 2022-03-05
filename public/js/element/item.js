@@ -60,10 +60,22 @@ function loadContent(param)
                 $(window).trigger('resize');
 
                 // Sortable
-                $(function() {
-                    $("#hidden-drag-ghost-list").sortable();
-                    $(".items").sortable();
-                });
+                if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                    $(function() {
+                        $("#hidden-drag-ghost-list").sortable();
+                        $(".items").sortable({
+                            stop: function (event, ui) {
+                                let order = [];
+                                let index = 1;
+                                $('.item').each(function () {
+                                    order[index] = parseInt($(this).attr('data-id'));
+                                    index++;
+                                });
+                                updateOrder(order);
+                            }
+                        });
+                    });
+                }
             }, 
             error : function (response) {
                 toastr["error"](response.responseJSON.message, "ERROR")
@@ -110,7 +122,11 @@ function loadItem(page) {
         success: function (response) {
             $('.item-loading').remove();
             $('.items').prepend(response);
-            loadContent($('.item.active'));
+            if (response=='') {
+                loadContent(null);
+            } else {
+                loadContent($('.item.active'));
+            }
         }, 
         error : function (response) {
             toastr["error"](response.responseJSON.message, "ERROR")
@@ -227,4 +243,22 @@ function cancelCreating()
 {
     $('.deletion-item').addClass('d-none');
     $('.count').removeClass('d-none');
+}
+
+function updateOrder(data) { 
+    console.log(data);
+    $.ajax({
+        type: "PUT",
+        url: orderingItemRoute,
+        data: {data:data},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error : function (response) {
+            toastr["error"](response.responseJSON.message, "ERROR")
+        }
+    });
 }

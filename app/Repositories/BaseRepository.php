@@ -13,7 +13,7 @@ class BaseRepository implements BaseRepositoryInterface
         $this->model = $model;
     }
 
-    public function fetch($with=null, int $paginate=null)
+    public function fetch($with=null, int $paginate=null, array $orderBy=['id'=>'asc'])
     {
         $model = $this->model;
         
@@ -21,7 +21,8 @@ class BaseRepository implements BaseRepositoryInterface
             $model = $model->with($with);
         }
 
-        $model = $model->orderBy('id');
+        $key = array_key_first($orderBy);
+        $model = $model->orderBy($key, $orderBy[$key]);
 
         if ($paginate) {
             return $model->paginate($paginate);

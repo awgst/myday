@@ -22,6 +22,7 @@ Route::get('/', function () {
 });
 
 // Item
+Route::put('item/ordering', [ItemController::class, 'ordering'])->name('item.ordering');
 Route::resource('item', ItemController::class)
     ->except('create', 'edit')
     ->parameters([

@@ -19,7 +19,7 @@ class CardSeeder extends Seeder
             for ($i=1; $i <= 5; $i++) { 
                 $item->cards()->create([
                     'name' => 'Test Card '.$i,
-                    // 'position' => $i
+                    'position' => $i
                 ]);
             }
         }

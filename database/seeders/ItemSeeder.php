@@ -17,7 +17,7 @@ class ItemSeeder extends Seeder
         for ($i=1; $i <= 5; $i++) { 
             Item::create([
                 'name' => 'Test Item '.$i,
-                // 'position' => $i
+                'position' => $i
             ]);
         }
     }

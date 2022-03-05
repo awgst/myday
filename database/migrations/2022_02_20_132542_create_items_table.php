@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->string('name')->nullable();
+            $table->integer('position')->nullable();
             $table->timestamps();
         });
     }

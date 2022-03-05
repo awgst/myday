@@ -97,7 +97,7 @@ function getCardsListHeight()
     let cardListHeight = $('.glass').height();
     let fitToHeight = 120;
     if ($(window).width() <= 992) {
-        fitToHeight = 250;
+        fitToHeight = 285;
     }
     cardListHeight = cardListHeight-(cardListHeight % 10);
     cardListHeight = cardListHeight - fitToHeight;

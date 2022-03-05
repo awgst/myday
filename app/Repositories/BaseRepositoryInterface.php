@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 interface BaseRepositoryInterface
 {
-    public function fetch($with=null, int $paginate);
+    public function fetch($with=null, int $paginate, array $orderBy=['id'=>'asc']);
     public function find($id, $with=null);
     public function findOrFail($id, $with=null);
     public function store(array $data);

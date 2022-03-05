@@ -28,7 +28,7 @@ class ItemController extends Controller
                                     },
                                     'cards.tasks'
                                 ])->withCount('cards as cards_count')
-                                ->orderBy('id')
+                                ->orderBy('position', 'asc')
                                 ->get();
         } catch (Exception $e) {
             return panic($e->getMessage());
@@ -70,7 +70,7 @@ class ItemController extends Controller
         try {
             $item = $this->item->update($id, $request->data());
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return panic($e->getMessage());
         }
 
         return response()->json(['item'=>$item], 200);
@@ -81,9 +81,20 @@ class ItemController extends Controller
         try {
             $item = $this->item->destroy($id);
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return panic($e->getMessage());
         }
 
         return response()->json(['item'=>$item], 200);
+    }
+
+    public function ordering(Request $request)
+    {
+        try {
+            $this->item->ordering($request->all()['data']);
+        } catch (Exception $e) {
+            return panic($e->getMessage());
+        }
+
+        return response()->json(['message'=>'Success'], 200);
     }
 }
