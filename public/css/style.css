@@ -209,7 +209,7 @@ body {
     padding: 5px .35rem;
 }
 
-.sidebar-nav .item .form-item {
+.sidebar-nav .item {
     cursor: pointer;
 }
 
@@ -226,8 +226,6 @@ body {
     font-size: 12px;
     font-weight: 300;
 }
-
-
 
 /* Progress */
 .progress {
@@ -315,6 +313,7 @@ body {
 #hidden-drag-ghost-list {
     overflow-y: auto;
     overflow-x: hidden;
+    position: relative;
 }
 
 /* Modal */

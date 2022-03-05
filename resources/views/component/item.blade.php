@@ -1,4 +1,4 @@
-<div class="item {{ ($isActive ?? false) ? 'active extra-light-blue' : '' }}" data-url="{{ route('item.show', $id) }}" data-id="{{ $id }}">
+<li class="item {{ ($isActive ?? false) ? 'active extra-light-blue' : '' }}" data-url="{{ route('item.show', $id) }}" data-id="{{ $id }}" style="z-index: 10;">
     <div class="form-search">
         <input type="text" 
             name="name" 
@@ -18,4 +18,4 @@
             <i class="fa fa-trash text-danger"></i>
         </a>
     </div>
-</div>
+</li>

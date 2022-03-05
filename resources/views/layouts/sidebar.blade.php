@@ -1,6 +1,6 @@
 <div class="sidebar-nav mt-3">
     {{-- Items --}}
-    <div class="items">
+    <div class="items" style="position: relative; overflow: hidden;">
         <div class="item item-loading" style="justify-content: center">
             <i class="fa fa-spinner fa-pulse"></i>
         </div>

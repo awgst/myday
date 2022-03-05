@@ -22,10 +22,7 @@ class ItemRepository extends BaseRepository
             foreach ($data as $key => $value) {
                 $conditional .= ' when '.$value.' then '.$key; 
             }
-            DB::enableQueryLog();
             DB::update(DB::raw('UPDATE items SET position = (CASE id '.$conditional.' END) WHERE id IN ('.implode(',', $data).')'));
-            $query = DB::getQueryLog();
-            dd($query);
         }
     }
 }

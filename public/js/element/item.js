@@ -76,6 +76,17 @@ function loadContent(param)
                         });
                     });
                 }
+
+                // Dynamic form-item width
+                $('.form-item').each(function () {
+                    let width;
+                    if ($(this).val().length > 0) {
+                        width = (($(this).val().length + 1) * 8) + 'px';
+                    } else {
+                        width = (($(this).attr('placeholder').length + 1) * 8) + 'px';
+                    }
+                    $(this).attr('style', 'width:'+width);
+                });
             }, 
             error : function (response) {
                 toastr["error"](response.responseJSON.message, "ERROR")
