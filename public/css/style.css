@@ -408,7 +408,7 @@ button.close {
 
 @media screen and (max-width: 992px) {
     .glass {
-        width: unset;
+        width: 90vw;
         height: 99vh;
     }
     .glasses {
