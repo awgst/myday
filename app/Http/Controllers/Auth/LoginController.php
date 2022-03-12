@@ -29,6 +29,21 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        if ($this->isEmail(request()->username)) {
+            request()['email'] = request()->username;
+            return 'email';
+        }
+
+        return 'username';
+    }
+
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -36,5 +51,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Validate if provided parameter is valid email.
+     *
+     * @param $param
+     * @return bool
+     */
+    private function isEmail($param)
+    {
+        return (preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $param));
     }
 }

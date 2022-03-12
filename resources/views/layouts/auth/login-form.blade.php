@@ -1,18 +1,19 @@
 <div class="tab-pane fade show active" id="nav-sign-in" role="tabpanel" aria-labelledby="nav-sign-in-tab">
-    <form>
-        <div class="mb-3">
-          <label for="emailForm" class="form-label">Username or email</label>
-          <input type="email" class="form-control" id="emailForm" placeholder="Username or email">
-        </div>
-        <div class="mb-3">
-          <label for="passwordForm" class="form-label">Password</label>
-          <input type="password" class="form-control" id="passwordForm" placeholder="Password">
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="rememberMe">
-          <label class="form-check-label" for="rememberMe">Remember me</label>
-        </div>
-        <button type="submit" class="btn btn-primary gradient-blue w-100 fw-bold">Sign In</button>
+    <form method="POST" action="{{ route('login') }}">
+      @csrf
+      <div class="mb-3">
+        <label for="emailForm" class="form-label">Username or email</label>
+        <input type="text" name="username" class="form-control" id="emailForm" placeholder="Username or email">
+      </div>
+      <div class="mb-3">
+        <label for="passwordForm" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="passwordForm" placeholder="Password">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="rememberMe">
+        <label class="form-check-label" for="rememberMe">Remember me</label>
+      </div>
+      <button type="submit" class="btn btn-primary gradient-blue w-100 fw-bold">Sign In</button>
     </form>
     <hr class="mb-1">
     <span class="text-muted fw-bold">Sign in with</span>
