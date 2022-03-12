@@ -13,6 +13,41 @@
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
     {{-- jQuery --}}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    {{-- Toastr --}}
+    <link rel="stylesheet" href="{{ asset('plugins/toastr/build/toastr.min.css') }}">
+    <script src="{{ asset('plugins/toastr/build/toastr.min.js') }}"></script>
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    </script>
+
+    @if(session()->has("notice"))
+        @php
+            $value = Session::get('notice');
+            Session::forget('notice');
+        @endphp
+        <script>
+            $(document).ready(function () {
+                let notice = {!! json_encode($value) !!};
+                toastr[notice.label](notice.message);
+            });
+        </script>
+    @endif
     
     <link rel="icon" href="{{ asset('assets/images/logo.png') }}">
     <title>@yield('title', 'My Day')</title>
@@ -59,11 +94,23 @@
         </div>
         @include('layouts.about')
     </div>
+    <script src="{{ asset('js/form-validation.js') }}"></script>
     <script>
-        $(document).on('click', '.navbar-item', function (e) {
-            e.preventDefault();
-            $('.pages').attr('style', 'display: none;');
-            $($(this).attr('data-target')).fadeIn();
+        $(document).ready(function () {
+            $(document).on('click', '.navbar-item', function (e) {
+                e.preventDefault();
+                $('.pages').attr('style', 'display: none;');
+                $($(this).attr('data-target')).fadeIn();
+                toastr["success"]("test");
+            });
+            
+            // Form validation
+            // Login
+            let keyCheck = {
+                username: "The username or email field is required.",
+                password: "The password field is required."
+            };
+            validate($('#formLogin'), keyCheck, false);
         });
 
     </script>
