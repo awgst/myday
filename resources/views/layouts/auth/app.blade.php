@@ -111,6 +111,8 @@
                 password: "The password field is required."
             };
             validate($('#formLogin'), keyCheck, false);
+            // Register
+            validate($('#formRegister'), {}, true);
         });
 
     </script>

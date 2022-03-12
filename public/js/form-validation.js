@@ -29,10 +29,6 @@ function _ajaxValidation(selector, validSubmit) {
         }
     });
 
-    if (!valid) {
-        toastr["error"]("Oops! Something went wrong, please try again.");
-    }
-
     return valid;
 }
 
