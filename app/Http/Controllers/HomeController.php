@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('verified')->only('authenticated');
+    }
     /**
      * Show the application dashboard.
      *
@@ -15,10 +19,15 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $user = Auth::user();
-            return view('home', compact('user'));
+            redirect()->route('authenticated');
         }
         
         return view('welcome');
+    }
+
+    public function authenticated()
+    {
+        $user = Auth::user();
+        return view('home', compact('user'));
     }
 }

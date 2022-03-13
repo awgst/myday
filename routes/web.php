@@ -45,6 +45,7 @@ Route::group(['as'=>'json.', 'prefix'=>'json/'], function(){
     Route::get('search', [JsonController::class, 'search'])->name('search');
 });
 
-Auth::routes();
+Auth::routes(['verify'=>'true']);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'authenticated'])->name('authenticated')->middleware('auth');
