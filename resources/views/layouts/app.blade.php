@@ -20,7 +20,7 @@
                         <div class="head">
                             <div class="profile form-search">
                                 <img src="{{ asset('assets/images/avatar.jpeg') }}" alt="" class="pict">
-                                <input type="text" class="mx-1 text-muted" placeholder="Search" value="Hi, Name" id="search" readonly>
+                                <input type="text" class="mx-1 text-muted" placeholder="Search" value="Hi, {{ $user->first_name ?? '-' }}" id="search" readonly>
                             </div>
                             <div class="search ms-1">
                                 <i class="fa fa-search text-muted"></i>

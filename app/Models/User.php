@@ -45,4 +45,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Add first name attribute, get from full name
+     * @return string
+     */
+    public function getFirstNameAttribute()
+    {
+        $results = array();
+        $name = $this->attributes['name'];
+        $results = explode(' ', $name);
+
+        return $results[0];
+    }
 }
