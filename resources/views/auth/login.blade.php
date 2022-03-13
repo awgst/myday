@@ -1,1 +1,1 @@
-@extends('layouts.auth.app')
+@extends('welcome')

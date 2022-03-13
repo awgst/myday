@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.auth.app')
 
-@section('content')
+@push('contents')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -44,4 +44,4 @@
         </div>
     </div>
 </div>
-@endsection
+@endpush
