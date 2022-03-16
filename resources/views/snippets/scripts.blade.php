@@ -29,6 +29,8 @@
         "hideMethod": "fadeOut"
     };
 </script>
+{{-- UJS --}}
+<script src="{{ asset('js/ujs.min.js') }}"></script>
 {{-- Custom Scripts --}}
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="{{ asset('js/element/card.js') }}"></script>

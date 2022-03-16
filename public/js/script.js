@@ -45,6 +45,17 @@ $(document).ready(function () {
         }
     });
 
+    // Popover
+    $('.popover-dismiss').on('click', function () {
+        $('#account').removeAttr('class');
+    });
+    $('.popover-dismiss').popover({
+        trigger: 'focus',
+        placement: 'bottom',
+        content: $('#account'),
+        html: true
+    });
+
 });
 
 function editOrDelete(param) {

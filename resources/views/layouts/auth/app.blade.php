@@ -75,18 +75,17 @@
                 e.preventDefault();
                 $('.pages').attr('style', 'display: none;');
                 $($(this).attr('data-target')).fadeIn();
-                toastr["success"]("test");
             });
             
             // Form validation
-            // // Login
-            // let keyCheck = {
-            //     username: "The username or email field is required.",
-            //     password: "The password field is required."
-            // };
-            // validate($('#formLogin'), keyCheck, false);
-            // // Register
-            // validate($('#formRegister'), {}, true);
+            // Login
+            let keyCheck = {
+                username: "The username or email field is required.",
+                password: "The password field is required."
+            };
+            validate($('#formLogin'), keyCheck, false);
+            // Register
+            validate($('#formRegister'), {}, true);
         });
 
     </script>

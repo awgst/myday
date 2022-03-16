@@ -405,6 +405,37 @@ button.close {
     box-shadow: none;
 }
 
+/* Popover */
+.popover {
+    width: 170px;
+}
+.popover-header {
+    background-color: transparent!important;
+    text-align: center!important;
+    font-size: 17px;
+    font-weight: 500;
+    color: #37393c!important;
+}
+
+.popover-body {
+    padding-bottom: 0;
+}
+
+#account {
+    list-style-type: none;
+    margin-bottom: .35rem!important;
+    padding: 0;
+}
+
+#account li {
+    font-size: 15px;
+}
+
+#account li a:hover {
+    color: #6c757d!important;
+    font-weight: 500;
+}
+
 
 @media screen and (max-width: 992px) {
     .glass {
