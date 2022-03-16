@@ -104,6 +104,20 @@
               </div>
               <div class="col">
                 <div class="p-3">
+                  <a href="https://www.heroku.com/" target="_blank">
+                    <img src="{{ asset('assets/images/logo/heroku.png') }}" alt="" class="w-100 h-100">
+                  </a>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-3">
+                  <a href="https://www.postgresql.org/" target="_blank">
+                    <img src="{{ asset('assets/images/logo/postgres.png') }}" alt="" class="w-100 h-100">
+                  </a>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-3">
                   <a href="https://codeseven.github.io/toastr/" target="_blank">
                     <p>Toastr Plugins</p>
                   </a>
