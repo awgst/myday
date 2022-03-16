@@ -8,6 +8,7 @@ use App\Repositories\BaseRepository;
 use App\Repositories\ItemRepository;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -28,6 +29,7 @@ class ItemController extends Controller
                                     },
                                     'cards.tasks'
                                 ])->withCount('cards as cards_count')
+                                ->where('user_id', Auth::user()->id)
                                 ->orderBy('position', 'asc')
                                 ->get();
         } catch (Exception $e) {

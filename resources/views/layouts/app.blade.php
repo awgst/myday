@@ -21,7 +21,7 @@
                         <div class="head">
                             <div class="profile form-search">
                                 <a tabindex="0" class="popover-dismiss" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="{{ $user->name ?? '' }}" data-content="">
-                                    <img src="{{ asset('assets/images/avatar.jpeg') }}" alt="" class="pict">
+                                    <img src="{{ asset('assets/images/dummy.png') }}" alt="" class="pict">
                                 </a>
                                 <ul id="account" class="d-none">
                                     <li><a href="#" class="text-muted">Account</a></li>
