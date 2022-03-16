@@ -11,9 +11,14 @@
         <input type="password" name="password" class="form-control" id="passwordForm" placeholder="Password">
         <span class="text-danger" data-validation="password"></span>
       </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
-        <label class="form-check-label" for="rememberMe">Remember me</label>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
+          <label class="form-check-label" for="rememberMe">Remember me</label>
+        </div>
+        <div class="mb-3 form-check">
+          <a href="{{ route('password.request') }}">Forgot password?</a>
+        </div>
       </div>
       <button type="submit" class="btn btn-primary gradient-blue w-100 fw-bold">Sign In</button>
     </form>

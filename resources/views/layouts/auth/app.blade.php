@@ -49,7 +49,7 @@
         </script>
     @endif
     
-    <link rel="icon" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" href="{{ asset('assets/images/logo-rev.png') }}">
     <title>@yield('title', 'My Day')</title>
 </head>
 <body style="background-image: url({{ asset('assets/images/bg-new.png') }}); background-position: center center; background-size: cover; background-attachment: fixed;">
@@ -57,12 +57,18 @@
         {{-- Navbar --}}
         <nav class="navbar navbar-light pt-3">
             <div class="container">
-                <a class="navbar-brand navbar-item" href="" data-target="#landing">
-                    My Day
-                </a>
-                <div class="d-flex">
-                    <a href="" class="navbar-item" data-target="#about">About</a>
-                </div>
+                @if (request()->routeIs('login') || request()->routeIs('register'))
+                    <a class="navbar-brand navbar-item item" href="" data-target="#landing">
+                        My Day
+                    </a>
+                    <div class="d-flex">
+                        <a href="" class="navbar-item item" data-target="#about">About</a>
+                    </div>
+                @else
+                    <a class="navbar-brand navbar-item" href="{{ route('login') }}">
+                        My Day
+                    </a>
+                @endif
             </div>
         </nav>
         {{-- Content --}}
@@ -71,7 +77,7 @@
     <script src="{{ asset('js/form-validation.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $(document).on('click', '.navbar-item', function (e) {
+            $(document).on('click', '.item', function (e) {
                 e.preventDefault();
                 $('.pages').attr('style', 'display: none;');
                 $($(this).attr('data-target')).fadeIn();
@@ -86,8 +92,8 @@
             validate($('#formLogin'), keyCheck, false);
             // Register
             validate($('#formRegister'), {}, true);
-        });
-
+        });    
     </script>
+    @stack('scripts')
 </body>
 </html>
