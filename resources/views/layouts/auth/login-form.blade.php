@@ -12,7 +12,7 @@
         <span class="text-danger" data-validation="password"></span>
       </div>
       <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="rememberMe">
+        <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
         <label class="form-check-label" for="rememberMe">Remember me</label>
       </div>
       <button type="submit" class="btn btn-primary gradient-blue w-100 fw-bold">Sign In</button>
