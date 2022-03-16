@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-param" content="_token" />
     @include('snippets.styles')
     
     <title>@yield('title', 'My Day')</title>
@@ -19,8 +20,14 @@
                         <!-- Head -->
                         <div class="head">
                             <div class="profile form-search">
-                                <img src="{{ asset('assets/images/avatar.jpeg') }}" alt="" class="pict">
-                                <input type="text" class="mx-1 text-muted" placeholder="Search" value="Hi, Name" id="search" readonly>
+                                <a tabindex="0" class="popover-dismiss" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="{{ $user->name ?? '' }}" data-content="">
+                                    <img src="{{ asset('assets/images/avatar.jpeg') }}" alt="" class="pict">
+                                </a>
+                                <ul id="account" class="d-none">
+                                    <li><a href="#" class="text-muted">Account</a></li>
+                                    <li><a href="{{ route('logout') }}" class="text-muted" data-method="POST">Logout</a></li>
+                                </ul>
+                                <input type="text" class="mx-1 text-muted" placeholder="Search" value="Hi, {{ $user->first_name ?? '-' }}" id="search" readonly>
                             </div>
                             <div class="search ms-1">
                                 <i class="fa fa-search text-muted"></i>

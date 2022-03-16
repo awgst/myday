@@ -4,6 +4,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\JsonController;
 use App\Http\Controllers\TaskController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +17,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Item
 Route::put('item/ordering', [ItemController::class, 'ordering'])->name('item.ordering');
@@ -47,3 +44,8 @@ Route::resource('task', TaskController::class)
 Route::group(['as'=>'json.', 'prefix'=>'json/'], function(){
     Route::get('search', [JsonController::class, 'search'])->name('search');
 });
+
+Auth::routes(['verify'=>'true']);
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'authenticated'])->name('authenticated')->middleware('auth');
