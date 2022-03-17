@@ -47,5 +47,9 @@ Route::group(['as'=>'json.', 'prefix'=>'json/'], function(){
 
 Auth::routes(['verify'=>'true']);
 
+// OAuth Routes
+Route::get('/auth/{driver}', [App\Http\Controllers\Auth\AuthController::class, 'authRedirect'])->name('auth.redirect');
+Route::get('/auth/{driver}/callback', [App\Http\Controllers\Auth\AuthController::class, 'authCallback'])->name('auth.callback');
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'authenticated'])->name('authenticated')->middleware('auth');
