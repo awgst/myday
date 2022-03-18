@@ -52,7 +52,7 @@
         <div class="mb-5">
           <h3>Tech</h3>
           <div class="container">
-            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3" style="margin: 0 10rem;">
+            <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 tech" style="margin: 0 10rem;">
               <div class="col">
                 <div class="p-3">
                   <a href="https://laravel.com/" target="_blank">

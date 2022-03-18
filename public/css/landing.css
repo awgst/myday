@@ -114,4 +114,19 @@ h2 {
     .wrapper {
         justify-content: center!important;
     }
+
+    /* Textarea */
+    .text-area {
+        margin: 0 1rem!important;
+    }
+
+    .tech {
+        margin: 0 1rem!important;
+    }
+}
+
+@media screen and (max-width: 993px) {
+    .tech {
+        margin: 0 1rem!important;
+    }
 }
