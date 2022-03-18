@@ -192,6 +192,7 @@ body {
     font-weight: 300;
     font-size: 16px;
     color: #6c757d;
+    max-width: 68px;
 }
 
 /* Sidebar */
@@ -447,6 +448,11 @@ button.close {
     }
     .sidebar-nav {
         max-height: 110px;
+    }
+
+    /* Form Item */
+    .form-item {
+        max-width: 170px;
     }
 }
 

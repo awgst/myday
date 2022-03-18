@@ -152,7 +152,7 @@ function createItem(param) {
 function loadItem(page) {
     $.ajax({
         type: "GET",
-        url: listItemRoute+'?page='+page,
+        url: listItemRoute,
         success: function (response) {
             $('.item-loading').remove();
             $('.items').prepend(response);
@@ -171,7 +171,7 @@ function loadItem(page) {
 function updateItem(param) {
     let input = param;
     let editItem = param.parents('.item').find('#editItem');
-    onLoading(editItem, 'fa-save');
+    onLoading(editItem.find('i'), 'fa-save');
     $.ajax({
         type: "PUT",
         url: param.attr('data-url'),
@@ -194,7 +194,7 @@ function updateItem(param) {
             editItem.attr('style', 'display:none;');
             param.parents('.item').find(`.count`).fadeIn();
             param.parents('.item').find(`#deleteItem`).fadeIn();
-            afterLoading(editItem, 'fa-save');
+            afterLoading(editItem.find('i'), 'fa-save');
         }
     });
 }

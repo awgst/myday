@@ -8,6 +8,7 @@
             disabled
             data-url="{{ route('item.update', $id) }}"
             autocomplete="off"
+            data-toggle="tooltip" data-placement="bottom" title="{{ $name ?? 'To Do' }}"
         >
     </div>
     <p class="mb-0 count">{{ $count ?? '0' }}</p>

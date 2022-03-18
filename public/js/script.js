@@ -11,7 +11,7 @@ $(document).ready(function () {
         $('#hidden-drag-ghost-list').attr('style', "height: "+cardContainerHeight);
     });
 
-    $(window).trigger('resize');
+    // $(window).trigger('resize');
     
     $(document).on('keyup', 'input,textarea', function (e) {
         e.preventDefault();
