@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- Bootstrap --}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}"/>
     {{-- Custom Style --}}
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.min.css') }}">
     {{-- jQuery --}}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     {{-- Toastr --}}
