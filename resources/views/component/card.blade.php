@@ -4,7 +4,7 @@
             <div class="form-search">
                 <input data-url="{{ route('card.update', $id) }}" name="name" type="text" class="mb-0 form-card" value="{{ $name ?? '' }}" placeholder="Card Name" autocomplete="off">
             </div>
-            <i class="fa fa-angle-down expand-task" id="" data-value="expand"></i>
+            <i class="btn fa fa-angle-down expand-task" id="" data-value="expand" style="padding-right: 0;"></i>
         </div>
         <span class="text-muted">
             <div class="form-search">
