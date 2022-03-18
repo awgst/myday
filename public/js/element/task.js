@@ -29,6 +29,11 @@ $(document).ready(function () {
         updateTask($(this));
         updateProgressCompletion($(this).parents('.card'));
     });
+
+    // Save task
+    $(document).on('click', '.save-task', function () {
+        $('.task').find('input').blur();
+    });
 });
 
 function createNewTask(param) {

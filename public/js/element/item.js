@@ -62,7 +62,30 @@ function loadContent(param)
                 // Sortable
                 if(! /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                     $(function() {
-                        $("#hidden-drag-ghost-list").sortable();
+                        $(".tasks").sortable({
+                            items: '.task:not(#new-task)',
+                            stop: function (event, ui) { 
+                                let order = [];
+                                let index = 1;
+                                $('.task:not(#new-task)').each(function () {
+                                    order[index] = parseInt($(this).attr('data-id'));
+                                    console.log(order[index]);
+                                    index++;
+                                })
+                                updateOrder(order, orderingTaskRoute);
+                            }
+                        });
+                        $("#hidden-drag-ghost-list").sortable({
+                            stop: function (event, ui) { 
+                                let order = [];
+                                let index = 1;
+                                $('.card').each(function () {
+                                    order[index] = parseInt($(this).attr('data-id'));
+                                    index++;
+                                })
+                                updateOrder(order, orderingCardRoute);
+                            }
+                        });
                         $(".items").sortable({
                             stop: function (event, ui) {
                                 let order = [];
@@ -71,7 +94,7 @@ function loadContent(param)
                                     order[index] = parseInt($(this).attr('data-id'));
                                     index++;
                                 });
-                                updateOrder(order);
+                                updateOrder(order, orderingItemRoute);
                             }
                         });
                     });
@@ -256,11 +279,10 @@ function cancelCreating()
     $('.count').removeClass('d-none');
 }
 
-function updateOrder(data) { 
-    console.log(data);
+function updateOrder(data, route) { 
     $.ajax({
         type: "PUT",
-        url: orderingItemRoute,
+        url: route,
         data: {data:data},
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

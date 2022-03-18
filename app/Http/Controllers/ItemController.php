@@ -23,12 +23,7 @@ class ItemController extends Controller
     {
         try {
             $itemModel = $this->item->model();
-            $items = $itemModel->with([
-                                    'cards'=>function($query){
-                                        return $query->latest();
-                                    },
-                                    'cards.tasks'
-                                ])->withCount('cards as cards_count')
+            $items = $itemModel->withCount('cards as cards_count')
                                 ->where('user_id', Auth::user()->id)
                                 ->orderBy('position', 'asc')
                                 ->get();
@@ -42,10 +37,12 @@ class ItemController extends Controller
     {
         try {
             $item = $this->item->findOrFail($id, [
-                'cards'=>function($query){
-                    return $query->latest();
+                'cards' => function($query){
+                    return $query->orderBy('position', 'asc');
                 },
-                'cards.tasks'
+                'cards.tasks' => function($query){
+                    return $query->orderBy('position', 'asc');
+                },
             ]);
             $cards = view('component.render.cards', ['cards'=>$item->cards])->render();
         } catch (Exception $e) {
@@ -92,7 +89,7 @@ class ItemController extends Controller
     public function ordering(Request $request)
     {
         try {
-            $this->item->ordering($request->all()['data']);
+            $this->item->ordering($request->all()['data'], 'items');
         } catch (Exception $e) {
             return panic($e->getMessage());
         }

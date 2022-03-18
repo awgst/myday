@@ -5,4 +5,6 @@
     var storeTaskRoute = {!! json_encode(route('task.store')) !!}
     var searchRoute = {!! json_encode(route('json.search')) !!}
     var orderingItemRoute = {!! json_encode(route('item.ordering')) !!}
+    var orderingCardRoute = {!! json_encode(route('card.ordering')) !!}
+    var orderingTaskRoute = {!! json_encode(route('task.ordering')) !!}
 </script>

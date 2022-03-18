@@ -7,6 +7,7 @@
             value="{{ $name ?? 'To Do' }}" 
             disabled
             data-url="{{ route('item.update', $id) }}"
+            autocomplete="off"
         >
     </div>
     <p class="mb-0 count">{{ $count ?? '0' }}</p>

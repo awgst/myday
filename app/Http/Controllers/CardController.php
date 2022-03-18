@@ -11,12 +11,10 @@ use Illuminate\Http\Request;
 class CardController extends Controller
 {
     private $card;
-    private $item;
 
-    public function __construct(CardRepository $card, ItemRepository $item)
+    public function __construct(CardRepository $card)
     {
         $this->card = $card;
-        $this->item = $item;
     }
 
     public function store(Request $request)
@@ -50,5 +48,16 @@ class CardController extends Controller
         }
 
         return response()->json(['card'=>$card], 200);
+    }
+
+    public function ordering(Request $request)
+    {
+        try {
+            $this->card->ordering($request->all()['data'], 'cards');
+        } catch (Exception $e) {
+            return panic($e->getMessage());
+        }
+
+        return response()->json(['message'=>'Success'], 200);
     }
 }
