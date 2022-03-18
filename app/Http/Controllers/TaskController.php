@@ -47,4 +47,15 @@ class TaskController extends Controller
 
         return response()->json(['task'=>$task], 200);
     }
+
+    public function ordering(Request $request)
+    {
+        try {
+            $this->task->ordering($request->all()['data'], 'tasks');
+        } catch (Exception $e) {
+            return panic($e->getMessage());
+        }
+
+        return response()->json(['message'=>'Success'], 200);
+    }
 }

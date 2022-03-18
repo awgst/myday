@@ -21,19 +21,21 @@ use Illuminate\Support\Facades\Route;
 // Item
 Route::put('item/ordering', [ItemController::class, 'ordering'])->name('item.ordering');
 Route::resource('item', ItemController::class)
-    ->except('create', 'edit')
-    ->parameters([
-        'item' => 'id'
-    ]);
+->except('create', 'edit')
+->parameters([
+    'item' => 'id'
+]);
 
 // Card
+Route::put('card/ordering', [CardController::class, 'ordering'])->name('card.ordering');
 Route::resource('card', CardController::class)
-    ->except('create', 'edit')
-    ->parameters([
-        'card' => 'id'
-    ]);
+->except('create', 'edit')
+->parameters([
+    'card' => 'id'
+]);
 
 // Task
+Route::put('task/ordering', [TaskController::class, 'ordering'])->name('task.ordering');
 Route::resource('task', TaskController::class)
     ->except('create', 'edit')
     ->parameters([
