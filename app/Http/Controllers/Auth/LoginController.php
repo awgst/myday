@@ -38,6 +38,10 @@ class LoginController extends Controller
      */
     public function username()
     {
+        request()->merge([
+            'username' => request()->username_login,
+            'password' => request()->password_login
+        ]);
         if ($this->isEmail(request()->username)) {
             request()['email'] = request()->username;
             return 'email';

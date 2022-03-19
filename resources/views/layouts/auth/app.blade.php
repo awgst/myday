@@ -74,26 +74,7 @@
         {{-- Content --}}
         @stack('contents')
     </div>
-    <script src="{{ asset('js/form-validation.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            $(document).on('click', '.item', function (e) {
-                e.preventDefault();
-                $('.pages').attr('style', 'display: none;');
-                $($(this).attr('data-target')).fadeIn();
-            });
-            
-            // Form validation
-            // Login
-            let keyCheck = {
-                username: "The username or email field is required.",
-                password: "The password field is required."
-            };
-            validate($('#formLogin'), keyCheck, false);
-            // Register
-            validate($('#formRegister'), {}, true);
-        });    
-    </script>
+    <script src="{{ asset('js/form-validation.min.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
