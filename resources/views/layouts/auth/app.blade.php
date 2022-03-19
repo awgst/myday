@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- Bootstrap --}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.min.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="{{ asset('plugins/font-awesome/css/font-awesome.min.css') }}"/>
     {{-- Custom Style --}}
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.min.css') }}">
     {{-- jQuery --}}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     {{-- Toastr --}}
@@ -74,26 +74,7 @@
         {{-- Content --}}
         @stack('contents')
     </div>
-    <script src="{{ asset('js/form-validation.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            $(document).on('click', '.item', function (e) {
-                e.preventDefault();
-                $('.pages').attr('style', 'display: none;');
-                $($(this).attr('data-target')).fadeIn();
-            });
-            
-            // Form validation
-            // Login
-            let keyCheck = {
-                username: "The username or email field is required.",
-                password: "The password field is required."
-            };
-            validate($('#formLogin'), keyCheck, false);
-            // Register
-            validate($('#formRegister'), {}, true);
-        });    
-    </script>
+    <script src="{{ asset('js/form-validation.min.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

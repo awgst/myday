@@ -15,7 +15,7 @@
                             <label for="email" class="ctext-md-end">{{ __('EMAIL') }}</label>
 
                             <div class="">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="off" placeholder="Email Address">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
