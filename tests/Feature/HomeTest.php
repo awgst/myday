@@ -32,7 +32,7 @@ class HomeTest extends BaseTestCase
         $user = $this->user();
         $this->actingAs($user)
             ->visit('/')
-            ->see('Hi,'.explode($user->name, ' ')[0]);
+            ->see('Hi, '.explode(' ', $user->name)[0]);
     }
 
     // Generate user
