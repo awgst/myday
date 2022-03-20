@@ -43,7 +43,7 @@ class LoginTest extends TestCase
     /**
      * Test user login when email is not verified yet should be redirected to /email/verify
      */
-    public function testUserLoginWithUnverifiedEmail()
+    public function testUserWithUnverifiedEmailWillBeRedirectedToEmailVerify()
     {
         $user = $this->unverified()->user();
         $this->actingAs($user);
@@ -55,7 +55,7 @@ class LoginTest extends TestCase
     /**
      * Test user login with wrong credential
      */
-    public function testUserLoginWithWrongCredential()
+    public function testUserCannotLoginWithWrongCredential()
     {
         $this->user();
         $response = $this->post('/login', [
