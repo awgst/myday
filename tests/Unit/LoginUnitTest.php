@@ -11,7 +11,7 @@ class LoginUnitTest extends TestCase
     /**
      * Test for check return of username is an email or username
      */
-    public function testReturnOfUsernameIfInputIsUsername()
+    public function testReturnUsernameIfInputIsUsername()
     {
         $loginController = new LoginController();
         $faker = \Faker\Factory::create();
@@ -24,7 +24,7 @@ class LoginUnitTest extends TestCase
     /**
      * Test for check return of username is an email or username
      */
-    public function testReturnOfUsernameIfInputIsEmail()
+    public function testReturnEmailIfInputIsEmail()
     {
         $loginController = new LoginController();
         $faker = \Faker\Factory::create();
