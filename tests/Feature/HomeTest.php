@@ -13,20 +13,7 @@ class HomeTest extends BaseTestCase
     use CreatesApplication, RefreshDatabase;
     public $baseUrl = '';
     protected $unverified = false;
-
-    public function testLandingPageShowedCorrectly()
-    {
-        $this->visit('/')
-            ->see('My Day');
-    }
-
-    public function testAboutPageShowedCorrectly()
-    {
-        $this->visit('/')
-            ->click('about')
-            ->see('About My Day');
-    }
-
+    
     public function testHomePageShowedCorrectly()
     {
         $user = $this->user();

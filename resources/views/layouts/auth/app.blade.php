@@ -58,11 +58,11 @@
         <nav class="navbar navbar-light pt-3">
             <div class="container">
                 @if (request()->routeIs('login') || request()->routeIs('register'))
-                    <a class="navbar-brand navbar-item item" href="" data-target="#landing" id="landing">
+                    <a class="navbar-brand navbar-item item" href="" data-target="#landing" id="landingNav">
                         My Day
                     </a>
                     <div class="d-flex">
-                        <a href="" class="navbar-item item" data-target="#about" id="about">About</a>
+                        <a href="" class="navbar-item item" data-target="#about" id="aboutNav">About</a>
                     </div>
                 @else
                     <a class="navbar-brand navbar-item" href="{{ route('login') }}">
