@@ -24,7 +24,7 @@
                                     <img src="{{ asset('assets/images/dummy.png') }}" alt="" class="pict">
                                 </a>
                                 <ul id="account" class="d-none">
-                                    <li><a href="#" class="text-muted">Account</a></li>
+                                    <li><a href="#" class="text-muted" id="account">Account</a></li>
                                     <li><a href="{{ route('logout') }}" class="text-muted" data-method="POST">Logout</a></li>
                                 </ul>
                                 <input type="text" class="mx-1 text-muted" placeholder="Search" value="Hi, {{ $user->first_name ?? '-' }}" id="search" readonly autocomplete="off">

@@ -36,6 +36,7 @@
 <script src="{{ asset('js/element/card.min.js') }}"></script>
 <script src="{{ asset('js/element/item.min.js') }}"></script>
 <script src="{{ asset('js/element/task.min.js') }}"></script>
+<script src="{{ asset('js/account.min.js') }}"></script>
 
 {{-- Defined Route --}}
 @include('snippets.routes')

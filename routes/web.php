@@ -4,6 +4,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\JsonController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,9 @@ Route::resource('task', TaskController::class)
     ->parameters([
         'task' => 'id'
     ]);
+
+// Account
+Route::resource('account', AccountController::class)->only(['index']);
 
 // JSON
 Route::group(['as'=>'json.', 'prefix'=>'json/'], function(){
