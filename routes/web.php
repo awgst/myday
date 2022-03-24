@@ -44,7 +44,7 @@ Route::resource('task', TaskController::class)
     ]);
 
 // Account
-Route::resource('account', AccountController::class)->only(['index']);
+Route::resource('account', AccountController::class)->only(['index', 'update'])->parameters(['account'=>'uuid']);
 
 // JSON
 Route::group(['as'=>'json.', 'prefix'=>'json/'], function(){

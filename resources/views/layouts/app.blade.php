@@ -49,5 +49,37 @@
     </div>
     @include('includes.modal-search')
     @include('snippets.scripts')
+    <script>
+        $(document).ready(function () {
+            $(document).on('submit', '#formAccount', function (e) {
+                e.preventDefault();
+                $(this).find(`[type="submit"]`).prop('disabled', true);
+                $(this).find(`[type="submit"]`).html(`<i class="fa fa-spinner fa-pulse"></i>`);
+                $.ajax({
+                    type: "PUT",
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function (response) {
+                        $('.text-danger').html('');
+                    }, error: function (response) {
+                        $('.text-danger').html('');
+                        if (response.status == 422) {
+                            let errors = response.responseJSON.errors;
+                            for (const key in errors) {
+                                if (Object.hasOwnProperty.call(errors, key)) {
+                                    const element = errors[key];
+                                    $(`[data-validation="${key}"]`).text(element);
+                                }
+                            }
+                        }
+                    }, complete: function () {
+                        $('.btn-submit-account').removeAttr('disabled');
+                        $('.btn-submit-account').html('Save');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
