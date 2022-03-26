@@ -72,6 +72,9 @@
                                     $(`[data-validation="${key}"]`).text(element);
                                 }
                             }
+                        } 
+                        if (response.status == 500) {    
+                            toastr["error"](response.responseJSON.message,"ERROR");
                         }
                     }, complete: function () {
                         $('.btn-submit-account').removeAttr('disabled');

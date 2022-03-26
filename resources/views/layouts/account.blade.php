@@ -10,7 +10,7 @@
         <form action="{{ route('account.update', $user->uuid) }}" method="post" enctype="multipart/form-data" id="formAccount">
             @csrf
             @method('put')
-            <div class="row" style="overflow-x: clip; overflow-y: auto; height: 57vh;">
+            <div class="row" style="overflow-x: clip; overflow-y: auto; height: 70vh;">
                 <div class="col-md-4 mb-5">
                     <div class="image-account" style="width: 100%; height: 100%;">
                         <img src="{{ asset('assets/images/dummy.png') }}" alt="" class="pict" style="width: 100%; height: 100%;">

@@ -19,8 +19,12 @@ class AccountController extends Controller
     public function update(UpdateRequest $request, $uuid)
     {
         try {
+            $data = $request->all();
             $user = User::where('uuid', $uuid)->first();
-            $user->update($request->all());
+            if (array_key_exists('email', $data)) {
+                unset($data['email']);
+            }
+            $user->update($data);
         } catch (Exception $e) {
             return panic($e->getMessage());
         }

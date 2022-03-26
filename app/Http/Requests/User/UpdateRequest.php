@@ -27,7 +27,11 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'username' => 'required',
+            'username' => [
+                'required', 
+                Rule::unique('users', 'username')
+                    ->ignore(request()->uuid, 'uuid')
+            ],
             'current_password' => [Rule::requiredIf(function(){
                 return request()->new_password;
             })],
