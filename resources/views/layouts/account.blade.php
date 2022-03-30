@@ -13,12 +13,12 @@
             <div class="row" style="overflow-x: clip; overflow-y: auto; height: 70vh;">
                 <div class="col-md-4 mb-5">
                     <div class="image-account" style="width: 100%; height: 100%;">
-                        <img src="{{ $user->profile_picture }}" alt="" class="pict" style="width: 100%; height: 100%;">
+                        <img src="{{ $user->profile_picture_url }}" alt="" class="pict" style="width: 100%; height: 100%;">
                     </div>
                     <div class="d-flex row-reverse">
                         {{-- <input type="file" name="x" id="test" value="test"> --}}
                         <label class="label" for="profilePicture">
-                            <input type="file" name="profile_picture" id="profilePicture" class="image-upload" accept="image/png"/>
+                            <input type="file" name="profile_picture" id="profilePicture" class="image-upload" accept="image/png,image/jpeg,image/jpg"/>
                             {{-- <input type="hidden" name="profile_picture"> --}}
                             <span>{{ __('Upload file') }}</span>
                         </label>

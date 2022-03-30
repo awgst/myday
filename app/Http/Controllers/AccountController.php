@@ -40,11 +40,15 @@ class AccountController extends Controller
                                 ->to('uploads/user/')
                                 ->setName(encrypt($user->id))
                                 ->mimes('jpg,png,jpeg')
+                                ->oldDelete($user->profile_picture ?? '')
                                 ->save();
             $model = User::where('uuid', $user->uuid)->first();
             $model->update(['profile_picture' => $uploadedFile]);
+            $userNew = User::find($user->id);
         } catch (Exception $e) {
             return panic($e->getMessage());
         }
+
+        return response()->json(['profile_picture' => $userNew->profile_picture_url]);
     }
 }

@@ -25,7 +25,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'provider',
-        'provider_id'
+        'provider_id',
+        'profile_picture'
     ];
 
     /**
@@ -62,7 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $results[0];
     }
 
-    public function getProfilePictureAttribute()
+    public function getProfilePictureUrlAttribute()
     {
         $attributes = $this->attributes;
         $profilePicture = $attributes['profile_picture'];
@@ -77,6 +78,6 @@ class User extends Authenticatable implements MustVerifyEmail
                 $url = null;
             }
         }
-        return $url ?? asset('assets/images/dummy.png');
+        return is_null($profilePicture) ? asset('assets/images/dummy.png') : $url;
     }
 }

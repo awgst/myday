@@ -12,6 +12,7 @@ class UploadService
     private $path;
     private $mime;
     private $filename;
+    private $oldFile;
 
     public function __construct($driver = 'public')
     {
@@ -65,6 +66,13 @@ class UploadService
         $this->filename = $this->file->getClientOriginalName();
     }
 
+    public function oldDelete(string $oldFile)
+    {
+        $this->oldFile = $oldFile;
+
+        return $this;
+    }
+
     public function validate()
     {
         $request = ['file' => $this->file];
@@ -80,6 +88,13 @@ class UploadService
     {
         $this->validate();
         $this->getName();
+        // Delete old file
+        if ($this->oldFile) {
+            if (Storage::disk($this->driver)->exists($this->path.$this->oldFile)) {
+                Storage::disk($this->driver)->delete($this->path.$this->oldFile);
+            }
+        }
+
         Storage::disk($this->driver)
             ->putFileAs($this->path, $this->file, $this->filename);
 
