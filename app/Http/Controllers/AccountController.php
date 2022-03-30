@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UpdateRequest;
 use App\Models\User;
+use App\Services\UploadService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,23 @@ class AccountController extends Controller
                 unset($data['email']);
             }
             $user->update($data);
+        } catch (Exception $e) {
+            return panic($e->getMessage());
+        }
+    }
+
+    public function upload(Request $request)
+    {
+        try {
+            $data = $request->file('file');
+            $user = Auth::user();
+            $uploadedFile = (new UploadService())->from($data)
+                                ->to('uploads/user/')
+                                ->setName(encrypt($user->id))
+                                ->mimes('jpg,png,jpeg')
+                                ->save();
+            $model = User::where('uuid', $user->uuid)->first();
+            $model->update(['profile_picture' => $uploadedFile]);
         } catch (Exception $e) {
             return panic($e->getMessage());
         }

@@ -59,9 +59,9 @@
                     type: "PUT",
                     url: $(this).attr('action'),
                     data: $(this).serialize(),
-                    dataType: "json",
                     success: function (response) {
                         $('.text-danger').html('');
+                        uploadFile($(`[name="profile_picture"]`), accountUploadRoute);
                     }, error: function (response) {
                         $('.text-danger').html('');
                         if (response.status == 422) {
@@ -82,7 +82,35 @@
                     }
                 });
             });
+
+            $(document).change('.image-upload', function (input) {
+                let file = input.target.files;
+                let reader = new FileReader();
+                reader.onload = function(e){
+                    $('.image-account').find('img').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(file[0]);
+            });
         });
+
+        function uploadFile(selector, url) {
+            let data = new FormData();
+            data.append('file', selector.prop('files')[0]);
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (response) {
+                }, error: function (reponse) {
+                    console.log(response);
+                    toastr['error']("Upload failed", "ERROR");
+                }
+            });
+        }
     </script>
 </body>
 </html>

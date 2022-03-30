@@ -44,6 +44,7 @@ Route::resource('task', TaskController::class)
     ]);
 
 // Account
+Route::post('account/upload', [AccountController::class, 'upload'])->name('account.upload');
 Route::resource('account', AccountController::class)->only(['index', 'update'])->parameters(['account'=>'uuid']);
 
 // JSON

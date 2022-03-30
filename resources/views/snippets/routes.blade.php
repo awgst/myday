@@ -8,4 +8,5 @@
     var orderingCardRoute = {!! json_encode(route('card.ordering')) !!}
     var orderingTaskRoute = {!! json_encode(route('task.ordering')) !!}
     var accountSettingRoute = {!! json_encode(route('account.index')) !!}
+    var accountUploadRoute = {!! json_encode(route('account.upload')) !!}
 </script>
