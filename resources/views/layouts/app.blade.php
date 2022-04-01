@@ -21,10 +21,10 @@
                         <div class="head">
                             <div class="profile form-search">
                                 <a tabindex="0" class="popover-dismiss" role="button" data-toggle="popover" data-trigger="focus" data-placement="bottom" title="{{ $user->name ?? '' }}" data-content="">
-                                    <img src="{{ asset('assets/images/dummy.png') }}" alt="" class="pict">
+                                    <img src="{{ $user->profile_picture_url }}" alt="" class="pict" id="miniProfilePicture">
                                 </a>
                                 <ul id="account" class="d-none">
-                                    <li><a href="#" class="text-muted">Account</a></li>
+                                    <li><a href="#" class="text-muted" id="account">Account</a></li>
                                     <li><a href="{{ route('logout') }}" class="text-muted" data-method="POST">Logout</a></li>
                                 </ul>
                                 <input type="text" class="mx-1 text-muted" placeholder="Search" value="Hi, {{ $user->first_name ?? '-' }}" id="search" readonly autocomplete="off">
@@ -49,5 +49,70 @@
     </div>
     @include('includes.modal-search')
     @include('snippets.scripts')
+    <script>
+        // $(document).ready(function () {
+        //     $(document).on('submit', '#formAccount', function (e) {
+        //         e.preventDefault();
+        //         $(this).find(`[type="submit"]`).prop('disabled', true);
+        //         $(this).find(`[type="submit"]`).html(`<i class="fa fa-spinner fa-pulse"></i>`);
+        //         $.ajax({
+        //             type: "PUT",
+        //             url: $(this).attr('action'),
+        //             data: $(this).serialize(),
+        //             success: function (response) {
+        //                 $('.text-danger').html('');
+        //                 uploadFile($(`[name="profile_picture"]`), accountUploadRoute);
+        //             }, error: function (response) {
+        //                 $('.text-danger').html('');
+        //                 if (response.status == 422) {
+        //                     let errors = response.responseJSON.errors;
+        //                     for (const key in errors) {
+        //                         if (Object.hasOwnProperty.call(errors, key)) {
+        //                             const element = errors[key];
+        //                             $(`[data-validation="${key}"]`).text(element);
+        //                         }
+        //                     }
+        //                 } 
+        //                 if (response.status == 500) {    
+        //                     toastr["error"](response.responseJSON.message,"ERROR");
+        //                 }
+        //             }
+        //         });
+        //     });
+
+        //     $(document).change('.image-upload', function (input) {
+        //         let file = input.target.files;
+        //         let reader = new FileReader();
+        //         reader.onload = function(e){
+        //             $('.image-account').find('img').attr('src', e.target.result);
+        //         }
+        //         reader.readAsDataURL(file[0]);
+        //     });
+        // });
+
+        // function uploadFile(selector, url) {
+        //     let data = new FormData();
+        //     data.append('file', selector.prop('files')[0]);
+        //     console.log(data);
+        //     $.ajax({
+        //         type: "POST",
+        //         url: url,
+        //         data: data,
+        //         contentType: false,
+        //         cache: false,
+        //         processData: false,
+        //         success: function (response) {
+        //             let profile = response.profile_picture;
+        //             console.log(profile);
+        //             $('#miniProfilePicture').attr('src', profile);
+        //         }, error: function (reponse) {
+        //             toastr['error']("Upload failed", "ERROR");
+        //         }, complete: function () {
+        //             $('.btn-submit-account').removeAttr('disabled');
+        //             $('.btn-submit-account').html('Save');
+        //         }
+        //     });
+        // }
+    </script>
 </body>
 </html>
