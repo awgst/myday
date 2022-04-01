@@ -26,10 +26,12 @@ abstract class TestCase extends BaseTestCase
             $user = User::factory(1)
                         ->unverified()
                         ->create([
+                            'profile_picture' => null,
                             'password' => bcrypt($password)
                         ])->first();
         } else {
             $user = User::factory(1)->create([
+                'profile_picture' => null,
                 'password' => bcrypt($password)
             ])->first();
         }
